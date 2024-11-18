@@ -6,6 +6,7 @@ import { Slot } from 'expo-router';
 import { Stack } from "expo-router/stack";
 
 import * as SplashScreen from 'expo-splash-screen'; 
+import COLORS from '@/constants/Colors';
 
 
 SplashScreen.preventAutoHideAsync();
@@ -61,8 +62,12 @@ export default function RootLayout() {
     }
 
     return (
-        <Stack screenOptions={{ gestureEnabled: false }}>
-            <Stack.Screen name='(main)' options={{ headerShown: false, }} />
+        <Stack screenOptions={{ 
+            gestureEnabled: false,
+            animation: "none",
+            contentStyle: { backgroundColor: COLORS.white },
+        }}>
+            <Stack.Screen name='(main)' options={{ headerShown: false }} />
             <Stack.Screen name='(onboarding)' options={{ headerShown: false}} />
             <Stack.Screen name='(auth)' options={{ headerShown: false}} />
         </Stack>

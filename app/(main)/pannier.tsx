@@ -2,11 +2,11 @@ import { View, Text, SafeAreaView } from 'react-native'
 import React from 'react'
 import ScrollableLayout from '@/components/layouts/ScrollableLayout'
 
-export default function FavorisScreen() {
+export default function PannierScreen() {
   return (
     <ScrollableLayout>
       <SafeAreaView>
-        <Text>FavorisScreen</Text>
+        <Text>PannierScreen</Text>
       </SafeAreaView>
     </ScrollableLayout>
   )

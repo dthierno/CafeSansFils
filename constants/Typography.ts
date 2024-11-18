@@ -1,49 +1,113 @@
 import { StyleSheet } from 'react-native';
 
-export const Typography = StyleSheet.create({
-  // Headings using Poppins
-  h1: {
+const styles = StyleSheet.create({
+  headingLargeBold: {
     fontFamily: 'Poppins-Bold',
     fontSize: 32,
-    lineHeight: 40,
   },
-  h2: {
+  headingLargeBase: {
+    fontFamily: 'Poppins-Regular',
+    fontSize: 32,
+  },
+  
+  headingMediumBold: {
     fontFamily: 'Poppins-Bold',
-    fontSize: 24,
-    lineHeight: 32,
-  },
-  h3: {
-    fontFamily: 'Poppins-Medium',
     fontSize: 20,
-    lineHeight: 28,
   },
-  
-  // Body text using Inter
-  bodyLarge: {
-    fontFamily: 'Inter',
-    fontSize: 16,
-    lineHeight: 24,
+  headingMediumBase: {
+    fontFamily: 'Poppins-Regular',
+    fontSize: 20,
   },
-  bodyMedium: {
-    fontFamily: 'Inter',
+
+  headingSmallBold: {
+    fontFamily: 'Poppins-Bold',
+    fontSize: 18,
+  },
+  headingSmallBase: {
+    fontFamily: 'Poppins-Regular',
+    fontSize: 18,
+  },
+
+  bodyLargeBase: {
+    fontFamily: 'Inter-Regular',
     fontSize: 14,
-    lineHeight: 20,
   },
-  bodySmall: {
-    fontFamily: 'Inter',
-    fontSize: 12,
-    lineHeight: 16,
+  bodyLargeSemiBold: {
+    fontFamily: 'Inter-SemiBold',
+    fontSize: 14,
   },
-  
-  // Other variations
-  button: {
+  bodyLargeMedium: {
     fontFamily: 'Inter-Medium',
     fontSize: 14,
-    lineHeight: 20,
   },
-  caption: {
-    fontFamily: 'Inter',
+
+  bodyNormalBase: {
+    fontFamily: 'Inter-Regular',
     fontSize: 12,
-    lineHeight: 16,
   },
-}); 
+  bodyNormalSemiBold: {
+    fontFamily: 'Inter-SemiBold',
+    fontSize: 12,
+  },
+  bodyNormalMedium: {
+    fontFamily: 'Inter-Medium',
+    fontSize: 12,
+  },
+
+  bodySmallBold: {
+    fontFamily: 'Inter-Bold',
+    fontSize: 10,
+  },
+  bodySmallBase: {
+    fontFamily: 'Inter-Regular',
+    fontSize: 10,
+  },
+
+  homeSearchText: {
+    fontFamily: 'Inter-Regular',
+    fontSize: 14,
+  },
+});
+
+/**
+ * Typography constants
+ * This defines the typography styles used throughout the application.
+ * @constant TYPOGRAPHY
+ */
+const TYPOGRAPHY = {
+  heading: {
+    large: {
+      bold: styles.headingLargeBold,
+      base: styles.headingLargeBase,
+    },
+    medium: {
+      bold: styles.headingMediumBold,
+      base: styles.headingMediumBase,
+    },
+    small: {
+      bold: styles.headingSmallBold,
+      base: styles.headingSmallBase,
+    },
+  },
+  body: {
+    large: {
+      base: styles.bodyLargeBase,
+      semiBold: styles.bodyLargeSemiBold,
+      medium: styles.bodyLargeMedium,
+    },
+    normal: {
+      base: styles.bodyNormalBase,
+      semiBold: styles.bodyNormalSemiBold,
+      medium: styles.bodyNormalMedium,
+    },
+    small: {
+      bold: styles.bodySmallBold,
+      base: styles.bodySmallBase,
+    },
+  },
+  component: {
+    homeSearchText: styles.homeSearchText,
+  }
+};
+
+export default TYPOGRAPHY;

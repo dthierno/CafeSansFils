@@ -24,7 +24,7 @@ describe("SelectLocalisation", () => {
     const button = screen.getByTestId("select-localisation-container");
 
     // Mock the console log for testing
-    const consoleSpy = jest.spyOn(console, "log").mockImplementation(() => {});
+    const consoleSpy = jest.spyOn(console, "warn").mockImplementation(() => {});
 
     fireEvent.press(button);
     expect(consoleSpy).toHaveBeenCalledWith(

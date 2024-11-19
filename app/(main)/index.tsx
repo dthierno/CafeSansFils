@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import { FlatList, ScrollView, Text, View, StyleSheet } from "react-native";
 import { Link, Redirect } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
+
 import SPACING from "@/constants/Spacing";
 import TYPOGRAPHY from "@/constants/Typography";
 import COLORS from "@/constants/Colors";
+
 import ScrollableLayout from "@/components/layouts/ScrollableLayout";
 import HeaderLayout from "@/components/layouts/HeaderLayout";
 import SelectLocalisation from "@/components/common/SelectLocalisation";
+import Search from "@/components/common/Inputs/Search";
 
 /**
  * `HomeScreen` component that conditionally renders content based on user authentication status.
@@ -33,15 +36,27 @@ export default function HomeScreen() {
   const isUserAuthenticated = true;
   if (!isUserAuthenticated) return <Redirect href="/first-onboarding" />;
 
+  function handleSearch(text: string): void {
+    console.warn("Search `Search` function not implemented.");
+  }
+
+  function handleFilter(): void {
+    console.warn("Search `Filter` function not implemented.");
+  }
+
   return (
     <ScrollableLayout>
       <SafeAreaView>
         <HeaderLayout />
         <View style={styles.locationAndSearchContainer}>
-            <SelectLocalisation
+          <SelectLocalisation
             currentLocalisation="Pavillon André Aisenstadt"
             style={styles.selectLocalisationContainer}
-            />
+          />
+          <Search
+            onSearch={handleSearch}
+            onFilter={handleFilter}
+          />
         </View>
       </SafeAreaView>
     </ScrollableLayout>
@@ -49,11 +64,13 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
-    selectLocalisationContainer: {
-        marginTop: SPACING["xl"]
-    },
-    locationAndSearchContainer: {
-        paddingHorizontal: SPACING["md"],
-        alignItems: "center",
-    }
+  selectLocalisationContainer: {
+    marginTop: SPACING["lg"],
+  },
+  locationAndSearchContainer: {
+    paddingHorizontal: SPACING["md"],
+    alignItems: "center",
+    justifyContent: "center",
+    gap: SPACING["xs"],
+  },
 });

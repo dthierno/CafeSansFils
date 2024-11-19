@@ -22,7 +22,7 @@ export default function SelectLocalisation({
   style,
 }: SelectLocalisationProps) {
   function handlePress(event: GestureResponderEvent): void {
-    console.log("`handlePress` function not implemented.");
+    console.warn("`handlePress` function not implemented.");
   }
   return (
     <TouchableOpacity

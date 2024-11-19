@@ -6,14 +6,14 @@ import COLORS from "@/constants/Colors";
 import AccountInfo from "@/components/common/Auth/AccountInfo";
 import IconButton from "@/components/common/Buttons/IconButton";
 
-export default function HeaderLayout() {
-  const user = {
-    fullName: "Darlene Robertson",
-    profilePicture: require("../../assets/images/placeholder/ProfilePicture.png"),
-  };
+export const user = {
+  fullName: "Darlene Robertson",
+  profilePicture: require("../../assets/images/placeholder/ProfilePicture.png"),
+};
 
+export default function HeaderLayout() {
   return (
-    <View style={styles.headerContainer}>
+    <View style={styles.headerContainer} testID="header-container">
       <AccountInfo
         profilePicture={user.profilePicture}
         profileName={user.fullName}

@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AccountInfo matches snapshot 1`] = `
+<View
+  style={
+    {
+      "alignItems": "center",
+      "flexDirection": "row",
+      "gap": 12,
+    }
+  }
+>
+  <Image
+    source="link/to/profile/picture"
+    style={
+      {
+        "borderColor": "rgba(0, 0, 0, 0.1)",
+        "borderRadius": "100%",
+        "borderWidth": 4,
+        "height": 52,
+        "width": 52,
+      }
+    }
+    testID="header-account-image"
+  />
+  <View>
+    <Text
+      style={
+        [
+          {},
+          {
+            "fontFamily": "Inter-Regular",
+            "fontSize": 12,
+          },
+        ]
+      }
+    >
+      Welcome Back
+    </Text>
+    <Text
+      style={
+        [
+          {
+            "color": "#000000",
+          },
+          {
+            "fontFamily": "Poppins-Bold",
+            "fontSize": 18,
+          },
+        ]
+      }
+    >
+      John Doe
+    </Text>
+  </View>
+</View>
+`;

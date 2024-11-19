@@ -17,7 +17,7 @@ export default function AccountInfo({
 }: AccountInfoProps) {
   return (
     <View style={styles.accountContainer}>
-      <Image source={profilePicture} style={styles.profilePicture} />
+      <Image source={profilePicture} style={styles.profilePicture} testID="header-account-image"/>
       <View>
         <Text style={[styles.welcomeText, TYPOGRAPHY.body.normal.base]}>
           {title}

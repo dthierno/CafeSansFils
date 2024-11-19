@@ -7,24 +7,27 @@ import SPACING from "@/constants/Spacing";
 type BasketButtonProps = {
   Icon?: LucideIcon;
   onPress?: () => void;
+  accessibilityLabel?: string;
 };
 
 export default function IconButton({
   Icon = ShoppingBasket,
   onPress,
+  accessibilityLabel="Shopping Basket",
 }: BasketButtonProps) {
   return (
     <TouchableOpacity
       style={styles.iconButtonContainer}
       onPress={onPress}
       activeOpacity={0.5}
+      testID="icon-button"
     >
       <Icon
         width={SPACING["xl"]}
         height={SPACING["xl"]}
         strokeWidth={2.2}
         color={COLORS.black}
-        accessibilityLabel="Shopping Basket"
+        accessibilityLabel={accessibilityLabel}
       />
     </TouchableOpacity>
   );

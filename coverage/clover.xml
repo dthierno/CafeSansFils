@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1732046110121" clover="3.2.0">
-  <project timestamp="1732046110121" name="All files">
+<coverage generated="1732046726928" clover="3.2.0">
+  <project timestamp="1732046726928" name="All files">
     <metrics statements="94" coveredstatements="16" conditionals="18" coveredconditionals="3" methods="40" coveredmethods="6" elements="152" coveredelements="25" complexity="0" loc="94" ncloc="94" packages="14" files="35" classes="35"/>
     <package name="app">
       <metrics statements="8" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="2" coveredmethods="0"/>
@@ -52,7 +52,7 @@
         <line num="40" count="0" type="stmt"/>
         <line num="44" count="0" type="stmt"/>
         <line num="47" count="0" type="stmt"/>
-        <line num="66" count="0" type="stmt"/>
+        <line num="72" count="0" type="stmt"/>
       </file>
       <file name="pannier.tsx" path="/Users/thierno/Documents/cadum/MenuM/app/(main)/pannier.tsx">
         <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>

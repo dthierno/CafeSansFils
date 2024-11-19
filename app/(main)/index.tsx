@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FlatList, ScrollView, Text, View, StyleSheet } from "react-native";
+import { FlatList, ScrollView, Text, View, StyleSheet, Image } from "react-native";
 import { Link, Redirect } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -58,6 +58,12 @@ export default function HomeScreen() {
             onFilter={handleFilter}
           />
         </View>
+        <Image 
+          source={require("@/assets/images/placeholder/imagexl.png")} 
+          style={styles.announcementImage}
+          width={361}
+          height={210}
+        />
       </SafeAreaView>
     </ScrollableLayout>
   );
@@ -72,5 +78,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     gap: SPACING["xs"],
+  },
+  announcementImage: {
+    marginTop: SPACING["xl"],
+    marginHorizontal: SPACING["md"],
+    borderRadius: SPACING["xs"],
   },
 });

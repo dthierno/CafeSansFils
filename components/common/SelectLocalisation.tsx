@@ -28,6 +28,7 @@ export default function SelectLocalisation({
     <TouchableOpacity
       onPress={handlePress}
       style={[style, styles.selectLocalisationContainer]}
+      activeOpacity={0.5}
       testID="select-localisation-container"
     >
       <MapPin

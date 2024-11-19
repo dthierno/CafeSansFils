@@ -2,6 +2,8 @@ import TYPOGRAPHY from '@/constants/Typography';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Tabs } from 'expo-router';
 
+// TODO: Find better icons and replace the FontAwesome icons.
+
 export default function TabLayout() {
     return (
         <Tabs screenOptions={{ tabBarActiveTintColor: 'black', tabBarInactiveTintColor: "#89898D" }}>

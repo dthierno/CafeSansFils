@@ -24,7 +24,7 @@ export default function SearchBar({
         height={20}
         strokeWidth={3.5}
         color={COLORS.subtuleDark}
-        accessibilityLabel="Search Icon"
+        testID="search-icon"
       />
 
       <TextInput
@@ -35,13 +35,17 @@ export default function SearchBar({
         returnKeyType="search"
       />
 
-      <TouchableOpacity onPress={onFilter} style={styles.filterButton}>
+      <TouchableOpacity
+        onPress={onFilter}
+        style={styles.filterButton}
+        testID="filter-icon-container"
+      >
         <SlidersHorizontal
           width={20}
           height={20}
           strokeWidth={3}
           color={COLORS.subtuleDark}
-          accessibilityLabel="Filter Icon"
+          testID="filter-icon"
         />
       </TouchableOpacity>
     </View>
@@ -50,17 +54,17 @@ export default function SearchBar({
 
 const styles = StyleSheet.create({
   searchContainer: {
-    flexDirection: "row",
+    borderRadius: 50,
     alignItems: "center",
-    backgroundColor: COLORS.lightGray,
-    borderRadius: 50, // Rounded corners
-    paddingHorizontal: SPACING.lg,
+    flexDirection: "row",
     paddingVertical: SPACING.md,
+    paddingHorizontal: SPACING.lg,
+    backgroundColor: COLORS.lightGray,
   },
   searchInput: {
     flex: 1,
-    marginLeft: SPACING.md,
     color: COLORS.black,
+    marginLeft: SPACING.md,
   },
   filterButton: {
     marginLeft: SPACING.sm,

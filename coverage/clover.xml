@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1732044793581" clover="3.2.0">
-  <project timestamp="1732044793581" name="All files">
-    <metrics statements="94" coveredstatements="14" conditionals="18" coveredconditionals="3" methods="40" coveredmethods="5" elements="152" coveredelements="22" complexity="0" loc="94" ncloc="94" packages="14" files="35" classes="35"/>
+<coverage generated="1732046110121" clover="3.2.0">
+  <project timestamp="1732046110121" name="All files">
+    <metrics statements="94" coveredstatements="16" conditionals="18" coveredconditionals="3" methods="40" coveredmethods="6" elements="152" coveredelements="25" complexity="0" loc="94" ncloc="94" packages="14" files="35" classes="35"/>
     <package name="app">
       <metrics statements="8" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="2" coveredmethods="0"/>
       <file name="_layout.tsx" path="/Users/thierno/Documents/cadum/MenuM/app/_layout.tsx">
@@ -156,15 +156,15 @@
       </file>
     </package>
     <package name="components.common.Inputs">
-      <metrics statements="3" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="2" coveredmethods="0"/>
+      <metrics statements="3" coveredstatements="2" conditionals="1" coveredconditionals="0" methods="2" coveredmethods="1"/>
       <file name="Input.tsx" path="/Users/thierno/Documents/cadum/MenuM/components/common/Inputs/Input.tsx">
         <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="5" count="0" type="stmt"/>
       </file>
       <file name="Search.tsx" path="/Users/thierno/Documents/cadum/MenuM/components/common/Inputs/Search.tsx">
-        <metrics statements="2" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="20" count="0" type="stmt"/>
-        <line num="51" count="0" type="stmt"/>
+        <metrics statements="2" coveredstatements="2" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="20" count="6" type="stmt"/>
+        <line num="55" count="1" type="stmt"/>
       </file>
     </package>
     <package name="components.layouts">
@@ -192,16 +192,16 @@
       <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="Colors.ts" path="/Users/thierno/Documents/cadum/MenuM/constants/Colors.ts">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="4" type="stmt"/>
+        <line num="1" count="5" type="stmt"/>
       </file>
       <file name="Spacing.ts" path="/Users/thierno/Documents/cadum/MenuM/constants/Spacing.ts">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="30" count="4" type="stmt"/>
+        <line num="30" count="5" type="stmt"/>
       </file>
       <file name="Typography.ts" path="/Users/thierno/Documents/cadum/MenuM/constants/Typography.ts">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="3" count="3" type="stmt"/>
-        <line num="77" count="3" type="stmt"/>
+        <line num="3" count="4" type="stmt"/>
+        <line num="77" count="4" type="stmt"/>
       </file>
     </package>
     <package name="scripts">

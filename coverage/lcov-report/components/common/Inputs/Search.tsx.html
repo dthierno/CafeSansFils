@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -131,7 +131,11 @@
 <a name='L66'></a><a href='#L66'>66</a>
 <a name='L67'></a><a href='#L67'>67</a>
 <a name='L68'></a><a href='#L68'>68</a>
-<a name='L69'></a><a href='#L69'>69</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -150,7 +154,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -181,7 +185,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -213,19 +221,19 @@ type SearchBarProps = {
   onFilter: () =&gt; void;
 };
 &nbsp;
-export default function <span class="fstat-no" title="function not covered" >SearchBar(</span>{
+export default function SearchBar({
   placeholder = <span class="branch-0 cbranch-no" title="branch not covered" >"Rechercher les cafés, les plats",</span>
   onSearch,
   onFilter,
 }: SearchBarProps) {
-<span class="cstat-no" title="statement not covered" >  return (</span>
+  return (
     &lt;View style={styles.searchContainer}&gt;
       &lt;Search
         width={20}
         height={20}
         strokeWidth={3.5}
         color={COLORS.subtuleDark}
-        accessibilityLabel="Search Icon"
+        testID="search-icon"
       /&gt;
 &nbsp;
       &lt;TextInput
@@ -236,32 +244,36 @@ export default function <span class="fstat-no" title="function not covered" >Sea
         returnKeyType="search"
       /&gt;
 &nbsp;
-      &lt;TouchableOpacity onPress={onFilter} style={styles.filterButton}&gt;
+      &lt;TouchableOpacity
+        onPress={onFilter}
+        style={styles.filterButton}
+        testID="filter-icon-container"
+      &gt;
         &lt;SlidersHorizontal
           width={20}
           height={20}
           strokeWidth={3}
           color={COLORS.subtuleDark}
-          accessibilityLabel="Filter Icon"
+          testID="filter-icon"
         /&gt;
       &lt;/TouchableOpacity&gt;
     &lt;/View&gt;
   );
 }
 &nbsp;
-const styles = <span class="cstat-no" title="statement not covered" >StyleSheet.create({</span>
+const styles = StyleSheet.create({
   searchContainer: {
-    flexDirection: "row",
+    borderRadius: 50,
     alignItems: "center",
-    backgroundColor: COLORS.lightGray,
-    borderRadius: 50, // Rounded corners
-    paddingHorizontal: SPACING.lg,
+    flexDirection: "row",
     paddingVertical: SPACING.md,
+    paddingHorizontal: SPACING.lg,
+    backgroundColor: COLORS.lightGray,
   },
   searchInput: {
     flex: 1,
-    marginLeft: SPACING.md,
     color: COLORS.black,
+    marginLeft: SPACING.md,
   },
   filterButton: {
     marginLeft: SPACING.sm,
@@ -274,7 +286,7 @@ const styles = <span class="cstat-no" title="statement not covered" >StyleSheet.
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-11-19T19:33:13.557Z
+                at 2024-11-19T19:55:10.103Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

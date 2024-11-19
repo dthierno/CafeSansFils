@@ -366,12 +366,12 @@ TN:
 SF:components/common/Inputs/Search.tsx
 FN:15,SearchBar
 FNF:1
-FNH:0
-FNDA:0,SearchBar
-DA:20,0
-DA:51,0
+FNH:1
+FNDA:6,SearchBar
+DA:20,6
+DA:55,1
 LF:2
-LH:0
+LH:2
 BRDA:16,0,0,0
 BRF:1
 BRH:0
@@ -432,7 +432,7 @@ TN:
 SF:constants/Colors.ts
 FNF:0
 FNH:0
-DA:1,4
+DA:1,5
 LF:1
 LH:1
 BRF:0
@@ -442,7 +442,7 @@ TN:
 SF:constants/Spacing.ts
 FNF:0
 FNH:0
-DA:30,4
+DA:30,5
 LF:1
 LH:1
 BRF:0
@@ -452,8 +452,8 @@ TN:
 SF:constants/Typography.ts
 FNF:0
 FNH:0
-DA:3,3
-DA:77,3
+DA:3,4
+DA:77,4
 LF:2
 LH:2
 BRF:0

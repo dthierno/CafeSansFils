@@ -6,6 +6,7 @@ import SPACING from "@/constants/Spacing";
 import TYPOGRAPHY from "@/constants/Typography";
 import COLORS from "@/constants/Colors";
 import ScrollableLayout from "@/components/layouts/ScrollableLayout";
+import HeaderLayout from "@/components/layouts/HeaderLayout";
 
 /**
  * `HomeScreen` component that conditionally renders content based on user authentication status.
@@ -33,14 +34,8 @@ export default function HomeScreen() {
 
     return (
         <ScrollableLayout>
-            <SafeAreaView style={{ justifyContent: "center", alignItems: "flex-start"}}>
-                    <Text style={[TYPOGRAPHY.heading.large.bold ,{marginTop: SPACING["4xl"], color: COLORS.black}]}>Hello, world!</Text>
-                    <Link href="/first-onboarding" style={[TYPOGRAPHY.body.large.medium, {marginTop: SPACING.xs}]}>
-                        {">"} Go to the first onboarding screen 
-                    </Link>
-                    <Link href="/cafe/CafeToreEtFraction" style={[TYPOGRAPHY.body.large.medium, {marginTop: SPACING.xs}]}>
-                        {">"} Go to the individual coffee screen
-                    </Link>
+            <SafeAreaView>
+                <HeaderLayout />
             </SafeAreaView>
         </ScrollableLayout>
     );

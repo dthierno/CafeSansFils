@@ -7,7 +7,7 @@ import SPACING from "@/constants/Spacing";
 
 export default function ScrollableLayout({ children }: { children: React.ReactNode }) {
   return (
-    <ScrollView showsVerticalScrollIndicator={false} style={{ flex:1, backgroundColor: COLORS.white, paddingHorizontal: SPACING.md}}>
+    <ScrollView showsVerticalScrollIndicator={false} style={{backgroundColor: COLORS.white}}>
       {children}
     </ScrollView>
   )

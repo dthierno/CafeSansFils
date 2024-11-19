@@ -25,7 +25,7 @@ describe("AccountInfo", () => {
   });
 
     it("matches snapshot", () => {
-        const { toJSON } = render(<AccountInfo {...mockProps} />);
-        expect(toJSON()).toMatchSnapshot();
+        const tree = render(<AccountInfo {...mockProps} />);
+        expect(tree).toMatchSnapshot();
     });
 });

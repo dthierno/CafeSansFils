@@ -25,7 +25,7 @@ describe("IconButton", () => {
   });
 
   it("matches snapshot", () => {
-    const { toJSON } = render(<IconButton {...mockProps} />);
-    expect(toJSON()).toMatchSnapshot();
+    const tree = render(<IconButton {...mockProps} />);
+    expect(tree).toMatchSnapshot();
   });
 });

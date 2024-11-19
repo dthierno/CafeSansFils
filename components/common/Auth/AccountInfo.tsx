@@ -12,8 +12,8 @@ type AccountInfoProps = {
 
 export default function AccountInfo({
   title = "Bonjour et Bienvenue",
-  profilePicture,
   profileName,
+  profilePicture,
 }: AccountInfoProps) {
   return (
     <View style={styles.accountContainer}>

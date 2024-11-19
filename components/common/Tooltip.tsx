@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { ChevronDown, Globe, LucideIcon } from "lucide-react-native";
+import { ChevronDown, Circle, Globe, LucideIcon } from "lucide-react-native";
 
 import COLORS from "@/constants/Colors";
 import SPACING from "@/constants/Spacing";
@@ -17,7 +17,7 @@ type TooltipProps = {
 export default function Tooltip({
   label,
   status,
-  Icon = Globe,
+  Icon = status && Circle,
   showChevron = true,
   onPress,
 }: TooltipProps) {
@@ -87,9 +87,6 @@ export default function Tooltip({
 
 const styles = StyleSheet.create({
   tooltipContainer: {
-    marginHorizontal: 16,
-    marginVertical: 28,
-
     flexDirection: "row",
     alignItems: "center",
     paddingHorizontal: SPACING.md,

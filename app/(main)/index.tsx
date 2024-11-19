@@ -19,6 +19,8 @@ import HeaderLayout from "@/components/layouts/HeaderLayout";
 import SelectLocalisation from "@/components/common/SelectLocalisation";
 import Search from "@/components/common/Inputs/Search";
 import Tooltip from "@/components/common/Tooltip";
+import { DollarSign, DollarSignIcon, Star, Vegan } from "lucide-react-native";
+import Divider from "@/components/common/Divider";
 
 /**
  * `HomeScreen` component that conditionally renders content based on user authentication status.
@@ -69,9 +71,16 @@ export default function HomeScreen() {
           width={361}
           height={210}
         />
-        <View style={styles.temp}>
-          <Tooltip label="Ouvert" status="green" showChevron={false} />
-        </View>
+        <ScrollableLayout scrollHorizontal style={styles.tooltipSearch}>
+            <View style={styles.tooltipSearchContainer}>
+                <Tooltip label="Ouvert" status="green" showChevron={false} />
+                <Tooltip label="Diététique" Icon={Vegan} />
+                <Tooltip label="Prix" />
+                <Tooltip label="Bientôt fermé" status="orange" showChevron={false} />
+                <Tooltip label="Rating" Icon={Star} />
+            </View>
+        </ScrollableLayout>
+        <Divider marginTop={SPACING["sm"]} />
       </SafeAreaView>
     </ScrollableLayout>
   );
@@ -92,10 +101,14 @@ const styles = StyleSheet.create({
     marginHorizontal: SPACING["md"],
     borderRadius: SPACING["xs"],
   },
-  temp: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "flex-start",
-    gap: SPACING["xs"],
+  tooltipSearch: {
+    marginTop: SPACING["md"],
+    paddingHorizontal: SPACING["md"],
+    paddingVertical: SPACING["sm"],
   },
+  tooltipSearchContainer: {
+    flexDirection: "row",
+    gap: SPACING["sm"],
+    paddingRight: SPACING["md"],
+  }
 });

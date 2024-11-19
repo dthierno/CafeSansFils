@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1732046726928" clover="3.2.0">
-  <project timestamp="1732046726928" name="All files">
-    <metrics statements="94" coveredstatements="16" conditionals="18" coveredconditionals="3" methods="40" coveredmethods="6" elements="152" coveredelements="25" complexity="0" loc="94" ncloc="94" packages="14" files="35" classes="35"/>
+<coverage generated="1732052189163" clover="3.2.0">
+  <project timestamp="1732052189163" name="All files">
+    <metrics statements="95" coveredstatements="16" conditionals="32" coveredconditionals="3" methods="40" coveredmethods="6" elements="167" coveredelements="25" complexity="0" loc="95" ncloc="95" packages="14" files="35" classes="35"/>
     <package name="app">
       <metrics statements="8" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="2" coveredmethods="0"/>
       <file name="_layout.tsx" path="/Users/thierno/Documents/cadum/MenuM/app/_layout.tsx">
@@ -47,12 +47,12 @@
       </file>
       <file name="index.tsx" path="/Users/thierno/Documents/cadum/MenuM/app/(main)/index.tsx">
         <metrics statements="6" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="3" coveredmethods="0"/>
-        <line num="36" count="0" type="stmt"/>
-        <line num="37" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="40" count="0" type="stmt"/>
         <line num="44" count="0" type="stmt"/>
-        <line num="47" count="0" type="stmt"/>
-        <line num="72" count="0" type="stmt"/>
+        <line num="45" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="55" count="0" type="stmt"/>
+        <line num="80" count="0" type="stmt"/>
       </file>
       <file name="pannier.tsx" path="/Users/thierno/Documents/cadum/MenuM/app/(main)/pannier.tsx">
         <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
@@ -100,7 +100,7 @@
       </file>
     </package>
     <package name="components.common">
-      <metrics statements="6" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="2"/>
+      <metrics statements="7" coveredstatements="3" conditionals="14" coveredconditionals="0" methods="5" coveredmethods="2"/>
       <file name="OnboardingStatus.tsx" path="/Users/thierno/Documents/cadum/MenuM/components/common/OnboardingStatus.tsx">
         <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="34" count="0" type="stmt"/>
@@ -116,8 +116,9 @@
         <line num="58" count="1" type="stmt"/>
       </file>
       <file name="Tooltip.tsx" path="/Users/thierno/Documents/cadum/MenuM/components/common/Tooltip.tsx">
-        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="10" count="0" type="stmt"/>
+        <metrics statements="2" coveredstatements="0" conditionals="14" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="88" count="0" type="stmt"/>
       </file>
     </package>
     <package name="components.common.Auth">

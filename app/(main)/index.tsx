@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { FlatList, ScrollView, Text, View, StyleSheet, Image } from "react-native";
+import {
+  FlatList,
+  ScrollView,
+  Text,
+  View,
+  StyleSheet,
+  Image,
+} from "react-native";
 import { Link, Redirect } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -11,6 +18,7 @@ import ScrollableLayout from "@/components/layouts/ScrollableLayout";
 import HeaderLayout from "@/components/layouts/HeaderLayout";
 import SelectLocalisation from "@/components/common/SelectLocalisation";
 import Search from "@/components/common/Inputs/Search";
+import Tooltip from "@/components/common/Tooltip";
 
 /**
  * `HomeScreen` component that conditionally renders content based on user authentication status.
@@ -53,17 +61,17 @@ export default function HomeScreen() {
             currentLocalisation="Pavillon André Aisenstadt"
             style={styles.selectLocalisationContainer}
           />
-          <Search
-            onSearch={handleSearch}
-            onFilter={handleFilter}
-          />
+          <Search onSearch={handleSearch} onFilter={handleFilter} />
         </View>
-        <Image 
-          source={require("@/assets/images/placeholder/imagexl.png")} 
+        <Image
+          source={require("@/assets/images/placeholder/imagexl.png")}
           style={styles.announcementImage}
           width={361}
           height={210}
         />
+        <View style={styles.temp}>
+          <Tooltip label="Ouvert" status="green" showChevron={false} />
+        </View>
       </SafeAreaView>
     </ScrollableLayout>
   );
@@ -83,5 +91,11 @@ const styles = StyleSheet.create({
     marginTop: SPACING["xl"],
     marginHorizontal: SPACING["md"],
     borderRadius: SPACING["xs"],
+  },
+  temp: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    gap: SPACING["xs"],
   },
 });

@@ -84,20 +84,50 @@ export default function HomeScreen() {
           <Tooltip label="Bientôt fermé" status="orange" showChevron={false} />
           <Tooltip label="Rating" Icon={Star} />
         </HorizontalCardScrollableLayout>
-        <HorizontalCardScrollableLayout 
-          title="Tendances du moment"
-          titleMarginTop={SPACING["xl"]}
-          scrollMarginTop={SPACING["xs"]}
-          scrollMarginBottom={SPACING["md"]}
-          scrollGap={SPACING["md"]}
-          dividerBottom
-        >
-            <CafeCard name="Jean Brillant" location="Pavillon Claire McNicole" priceRange="$$" rating={4.8} status="open" />
-            <CafeCard name="Jean Brillant" location="Pavillon Claire McNicole" priceRange="$$" rating={4.8} status="closing soon" />
-            <CafeCard name="Jean Brillant" location="Pavillon Claire McNicole" priceRange="$$" rating={4.8} status="open" />
-            <CafeCard name="Jean Brillant" location="Pavillon Claire McNicole" priceRange="$$" rating={4.8} status="closed" />
-            <CafeCard name="Jean Brillant" location="Pavillon Claire McNicole" priceRange="$$" rating={4.8} status="open" />
-        </HorizontalCardScrollableLayout>
+        <View>
+            <HorizontalCardScrollableLayout 
+            title="Tendances du moment"
+            titleMarginTop={SPACING["xl"]}
+            scrollMarginTop={SPACING["xs"]}
+            scrollMarginBottom={SPACING["md"]}
+            scrollGap={SPACING["md"]}
+            dividerBottom
+            >
+                <CafeCard name="Jean Brillant" location="Pavillon Claire McNicole" priceRange="$$" rating={4.8} status="open" />
+                <CafeCard name="Jean Brillant" location="Pavillon Claire McNicole" priceRange="$$" rating={4.8} status="closing soon" />
+                <CafeCard name="Jean Brillant" location="Pavillon Claire McNicole" priceRange="$$" rating={4.8} status="open" />
+                <CafeCard name="Jean Brillant" location="Pavillon Claire McNicole" priceRange="$$" rating={4.8} status="closed" />
+                <CafeCard name="Jean Brillant" location="Pavillon Claire McNicole" priceRange="$$" rating={4.8} status="open" />
+            </HorizontalCardScrollableLayout>
+            <HorizontalCardScrollableLayout 
+            title="Proches de vous"
+            titleMarginTop={SPACING["xl"]}
+            scrollMarginTop={SPACING["xs"]}
+            scrollMarginBottom={SPACING["md"]}
+            scrollGap={SPACING["md"]}
+            dividerBottom
+            >
+                <CafeCard name="Jean Brillant" location="Pavillon Claire McNicole" priceRange="$$" rating={4.8} status="open" />
+                <CafeCard name="Jean Brillant" location="Pavillon Claire McNicole" priceRange="$$" rating={4.8} status="closing soon" />
+                <CafeCard name="Jean Brillant" location="Pavillon Claire McNicole" priceRange="$$" rating={4.8} status="open" />
+                <CafeCard name="Jean Brillant" location="Pavillon Claire McNicole" priceRange="$$" rating={4.8} status="closed" />
+                <CafeCard name="Jean Brillant" location="Pavillon Claire McNicole" priceRange="$$" rating={4.8} status="open" />
+            </HorizontalCardScrollableLayout>
+            <HorizontalCardScrollableLayout 
+            title="Promotions en cours"
+            titleMarginTop={SPACING["xl"]}
+            scrollMarginTop={SPACING["xs"]}
+            scrollMarginBottom={SPACING["md"]}
+            scrollGap={SPACING["md"]}
+            dividerBottom
+            >
+                <CafeCard name="Jean Brillant" location="Pavillon Claire McNicole" priceRange="$$" rating={4.8} status="open" />
+                <CafeCard name="Jean Brillant" location="Pavillon Claire McNicole" priceRange="$$" rating={4.8} status="closing soon" />
+                <CafeCard name="Jean Brillant" location="Pavillon Claire McNicole" priceRange="$$" rating={4.8} status="open" />
+                <CafeCard name="Jean Brillant" location="Pavillon Claire McNicole" priceRange="$$" rating={4.8} status="closed" />
+                <CafeCard name="Jean Brillant" location="Pavillon Claire McNicole" priceRange="$$" rating={4.8} status="open" />
+            </HorizontalCardScrollableLayout>
+        </View>
       </SafeAreaView>
     </ScrollableLayout>
   );

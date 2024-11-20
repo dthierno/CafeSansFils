@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
 
   homeSearchText: {
     fontFamily: 'Poppins-Medium',
-    fontSize: 14,
+    fontSize: 13.5,
   },
 });
 

@@ -140,7 +140,7 @@ exports[`Search Component matches the snapshot 1`] = `
       [
         {
           "fontFamily": "Poppins-Medium",
-          "fontSize": 14,
+          "fontSize": 13.5,
         },
         {
           "color": "#000000",

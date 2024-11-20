@@ -21,6 +21,7 @@ import Search from "@/components/common/Inputs/Search";
 import Tooltip from "@/components/common/Tooltip";
 import { DollarSign, DollarSignIcon, Star, Vegan } from "lucide-react-native";
 import Divider from "@/components/common/Divider";
+import HorizontalCardScrollableLayout from "@/components/layouts/HorizontalCardScrollable";
 
 /**
  * `HomeScreen` component that conditionally renders content based on user authentication status.
@@ -71,16 +72,17 @@ export default function HomeScreen() {
           width={361}
           height={210}
         />
-        <ScrollableLayout scrollHorizontal style={styles.tooltipSearch}>
-            <View style={styles.tooltipSearchContainer}>
-                <Tooltip label="Ouvert" status="green" showChevron={false} />
-                <Tooltip label="Diététique" Icon={Vegan} />
-                <Tooltip label="Prix" />
-                <Tooltip label="Bientôt fermé" status="orange" showChevron={false} />
-                <Tooltip label="Rating" Icon={Star} />
-            </View>
-        </ScrollableLayout>
-        <Divider marginTop={SPACING["sm"]} />
+        <HorizontalCardScrollableLayout
+          scrollMarginTop={SPACING["md"]}
+          scrollMarginBottom={SPACING["sm"]}
+          dividerBottom
+        >
+          <Tooltip label="Ouvert" status="green" showChevron={false} />
+          <Tooltip label="Diététique" Icon={Vegan} />
+          <Tooltip label="Prix" />
+          <Tooltip label="Bientôt fermé" status="orange" showChevron={false} />
+          <Tooltip label="Rating" Icon={Star} />
+        </HorizontalCardScrollableLayout>
       </SafeAreaView>
     </ScrollableLayout>
   );
@@ -110,5 +112,5 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     gap: SPACING["sm"],
     paddingRight: SPACING["md"],
-  }
+  },
 });

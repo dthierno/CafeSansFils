@@ -18,28 +18,47 @@ type CafeCardProps = {
   location: string;
 
   /** The price range of the cafe */
-  priceRange: string;
+  priceRange: "$" | "$$" | "$$$" ;
 
   /** The rating of the cafe */
   rating: number;
+
+  /** The image of the cafe */
+  image?: string;
+
+  /** The size of the card */
+  size?: "medium" | "large";
 };
 
-const IMAGE_WIDTH = 318;
+let cardDimensions = {
+  medium: {
+    width: 318,
+    height: 180,
+    image: require("@/assets/images/placeholder/imagemd.png"),
+  },
+  large: {
+    width: 361,
+    height: 210,
+    image: require("@/assets/images/placeholder/imagexl.png"),
+  },
+};
 
 export default function CafeCard({
-  status = "open",
-  name = "Jean Brillant",
-  location = "Pavillon Claire McNicole",
-  priceRange = "$$",
-  rating = 4.8,
+  status,
+  name,
+  location,
+  priceRange,
+  rating,
+  image,
+  size = "medium",
 }: CafeCardProps) {
   return (
-    <View style={styles.container}>
+    <View style={{width: cardDimensions[size].width,}}>
       <View>
         <Image
-          source={require("@/assets/images/placeholder/imagemd.png")}
-          width={IMAGE_WIDTH}
-          height={180}
+          source={image ? { uri: image } : cardDimensions[size].image}
+          width={cardDimensions[size].width}
+          height={cardDimensions[size].height}
           style={{ borderRadius: SPACING["sm"] }}
         />
         <Text
@@ -50,13 +69,13 @@ export default function CafeCard({
           ]}
           testID="icon-button"
         >
-          4.8
+          {rating}
         </Text>
       </View>
       <View style={styles.caption}>
         <View style={styles.cafeInfo}>
           <View style={styles.cafeInfoHeader}>
-            <Text style={[TYPOGRAPHY.body.large.semiBold]}>Jean Brillant</Text>
+            <Text style={[TYPOGRAPHY.body.large.semiBold]}>{name}</Text>
             <Circle
               width={12}
               height={12}
@@ -81,14 +100,14 @@ export default function CafeCard({
           <Text
             style={[TYPOGRAPHY.body.normal.semiBold, styles.cafeInfoLocation]}
           >
-            Pavillon Claire McNicole
+            {location}
           </Text>
         </View>
         <Text
           style={[TYPOGRAPHY.body.normal.base, styles.priceRangeIcon]}
           testID="icon-button"
         >
-          $$
+          {priceRange}
         </Text>
       </View>
     </View>
@@ -97,7 +116,7 @@ export default function CafeCard({
 
 const styles = StyleSheet.create({
   container: {
-    width: IMAGE_WIDTH,
+    width: cardDimensions["medium"].width,
   },
   caption: {
     marginTop: SPACING["lg"],

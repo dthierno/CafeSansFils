@@ -26,7 +26,7 @@ export default function HeaderLayout() {
 const styles = StyleSheet.create({
   headerContainer: {
     paddingHorizontal: SPACING.md,
-    paddingVertical: SPACING.md,
+    paddingVertical: SPACING.sm,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",

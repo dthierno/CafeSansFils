@@ -22,6 +22,7 @@ import Tooltip from "@/components/common/Tooltip";
 import { DollarSign, DollarSignIcon, Star, Vegan } from "lucide-react-native";
 import Divider from "@/components/common/Divider";
 import HorizontalCardScrollableLayout from "@/components/layouts/HorizontalCardScrollable";
+import CafeCard from "@/components/common/Cards/CafeCard";
 
 /**
  * `HomeScreen` component that conditionally renders content based on user authentication status.
@@ -57,7 +58,7 @@ export default function HomeScreen() {
 
   return (
     <ScrollableLayout>
-      <SafeAreaView>
+      <SafeAreaView >
         <HeaderLayout />
         <View style={styles.locationAndSearchContainer}>
           <SelectLocalisation
@@ -83,6 +84,20 @@ export default function HomeScreen() {
           <Tooltip label="Bientôt fermé" status="orange" showChevron={false} />
           <Tooltip label="Rating" Icon={Star} />
         </HorizontalCardScrollableLayout>
+        <HorizontalCardScrollableLayout 
+          title="Tendances du moment"
+          titleMarginTop={SPACING["xl"]}
+          scrollMarginTop={SPACING["xs"]}
+          scrollMarginBottom={SPACING["md"]}
+          scrollGap={SPACING["md"]}
+          dividerBottom
+        >
+            <CafeCard name="Jean Brillant" location="Pavillon Claire McNicole" priceRange="$$" rating={4.8} status="open" />
+            <CafeCard name="Jean Brillant" location="Pavillon Claire McNicole" priceRange="$$" rating={4.8} status="closing soon" />
+            <CafeCard name="Jean Brillant" location="Pavillon Claire McNicole" priceRange="$$" rating={4.8} status="open" />
+            <CafeCard name="Jean Brillant" location="Pavillon Claire McNicole" priceRange="$$" rating={4.8} status="closed" />
+            <CafeCard name="Jean Brillant" location="Pavillon Claire McNicole" priceRange="$$" rating={4.8} status="open" />
+        </HorizontalCardScrollableLayout>
       </SafeAreaView>
     </ScrollableLayout>
   );
@@ -101,7 +116,7 @@ const styles = StyleSheet.create({
   announcementImage: {
     marginTop: SPACING["xl"],
     marginHorizontal: SPACING["md"],
-    borderRadius: SPACING["xs"],
+    borderRadius: SPACING["sm"],
   },
   tooltipSearch: {
     marginTop: SPACING["md"],

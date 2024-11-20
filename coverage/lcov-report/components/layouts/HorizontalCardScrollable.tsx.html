@@ -32,7 +32,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/14</span>
+                <span class='fraction'>0/15</span>
             </div>
         
             
@@ -209,7 +209,18 @@
 <a name='L144'></a><a href='#L144'>144</a>
 <a name='L145'></a><a href='#L145'>145</a>
 <a name='L146'></a><a href='#L146'>146</a>
-<a name='L147'></a><a href='#L147'>147</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L147'></a><a href='#L147'>147</a>
+<a name='L148'></a><a href='#L148'>148</a>
+<a name='L149'></a><a href='#L149'>149</a>
+<a name='L150'></a><a href='#L150'>150</a>
+<a name='L151'></a><a href='#L151'>151</a>
+<a name='L152'></a><a href='#L152'>152</a>
+<a name='L153'></a><a href='#L153'>153</a>
+<a name='L154'></a><a href='#L154'>154</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -344,8 +355,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -398,18 +412,21 @@ type HorizontalCardScrollableLayoutProps = {
 &nbsp;
   /** Margin above the title text */
   titleMarginTop?: number;
+&nbsp;
+  /** Gap between each card in the horizontal scroll section (default is 12) */
+  scrollGap?: number;
 };
 &nbsp;
 /**
  * ## HorizontalCardScrollableLayout
- * 
+ *
  * A reusable layout component for creating horizontally scrollable sections
  * with optional dividers, title, and customizable margins.
- * 
+ *
  * **Note**: The scrollable component inside this layout has some default
- * vertical padding of 16px to make it easier to scroll. You can't remove 
- * this padding without modifying the component's source code. 
- * 
+ * vertical padding of 16px to make it easier to scroll. You can't remove
+ * this padding without modifying the component's source code.
+ *
  * ### Example Usage
  * ```tsx
  * &lt;HorizontalCardScrollableLayout
@@ -425,7 +442,7 @@ type HorizontalCardScrollableLayoutProps = {
  *   &lt;Card title="Café 3" /&gt;
  * &lt;/HorizontalCardScrollableLayout&gt;
  * ```
- * 
+ *
  * @param HorizontalCardScrollableLayoutProps - Component props.
  */
 export default function <span class="fstat-no" title="function not covered" >HorizontalCardScrollableLayout(</span>{
@@ -439,11 +456,12 @@ export default function <span class="fstat-no" title="function not covered" >Hor
   dividerBottom = <span class="branch-0 cbranch-no" title="branch not covered" >false,</span>
   dividerHeight = <span class="branch-0 cbranch-no" title="branch not covered" >1,</span>
   titleMarginTop = <span class="branch-0 cbranch-no" title="branch not covered" >0,</span>
+  scrollGap = <span class="branch-0 cbranch-no" title="branch not covered" >SPACING["sm"],</span>
 }: HorizontalCardScrollableLayoutProps) {
 <span class="cstat-no" title="statement not covered" >  return (</span>
     &lt;&gt;
       {/* Top Divider */}
-      {dividerTop? (
+      {dividerTop ? (
         &lt;Divider
           marginTop={outerMarginTop}
           marginBottom={titleMarginTop}
@@ -459,9 +477,18 @@ export default function <span class="fstat-no" title="function not covered" >Hor
       )}
 &nbsp;
       {/* Horizontal Scroll Title */}
-      {title &amp;&amp; &lt;Text style={[TYPOGRAPHY.heading.small.bold, {
-        paddingHorizontal: SPACING["md"],
-      }]}&gt;{title}&lt;/Text&gt;}
+      {title &amp;&amp; (
+        &lt;Text
+          style={[
+            TYPOGRAPHY.heading.small.bold,
+            {
+              paddingHorizontal: SPACING["md"],
+            },
+          ]}
+        &gt;
+          {title}
+        &lt;/Text&gt;
+      )}
 &nbsp;
       {/* Horizontal Scroll Section */}
       &lt;ScrollableLayout
@@ -471,20 +498,15 @@ export default function <span class="fstat-no" title="function not covered" >Hor
           { marginTop: scrollMarginTop, marginBottom: scrollMarginBottom },
         ]}
       &gt;
-        &lt;View style={styles.container}&gt;{children}&lt;/View&gt;
+        &lt;View style={[styles.container, { gap: scrollGap }]}&gt;{children}&lt;/View&gt;
       &lt;/ScrollableLayout&gt;
-      
+&nbsp;
       {/* Bottom Divider */}
-      {dividerBottom? (
-        &lt;Divider
-          marginTop={outerMarginBottom}
-        /&gt;
+      {dividerBottom ? (
+        &lt;Divider marginTop={outerMarginBottom} /&gt;
       ) : (
         // Divider is not visible on the user' screen
-        &lt;Divider
-          marginTop={outerMarginBottom}
-          height={0}
-        /&gt;
+        &lt;Divider marginTop={outerMarginBottom} height={0} /&gt;
       )}
     &lt;/&gt;
   );
@@ -493,10 +515,9 @@ export default function <span class="fstat-no" title="function not covered" >Hor
 const styles = <span class="cstat-no" title="statement not covered" >{</span>
   horizontalScroll: {
     paddingVertical: SPACING["sm"], // Added some padding to make it easy to scroll
-    paddingHorizontal: SPACING["md"], 
+    paddingHorizontal: SPACING["md"],
   },
   container: {
-    gap: SPACING["sm"],
     paddingRight: SPACING["md"],
     flexDirection: "row" as "row",
   },
@@ -508,7 +529,7 @@ const styles = <span class="cstat-no" title="statement not covered" >{</span>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-11-20T19:54:07.853Z
+                at 2024-11-20T22:09:59.920Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

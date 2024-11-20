@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1732132447870" clover="3.2.0">
-  <project timestamp="1732132447870" name="All files">
-    <metrics statements="98" coveredstatements="18" conditionals="48" coveredconditionals="19" methods="41" coveredmethods="7" elements="187" coveredelements="44" complexity="0" loc="98" ncloc="98" packages="14" files="36" classes="36"/>
+<coverage generated="1732140599939" clover="3.2.0">
+  <project timestamp="1732140599939" name="All files">
+    <metrics statements="100" coveredstatements="18" conditionals="62" coveredconditionals="19" methods="41" coveredmethods="7" elements="203" coveredelements="44" complexity="0" loc="100" ncloc="100" packages="14" files="36" classes="36"/>
     <package name="app">
       <metrics statements="8" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="2" coveredmethods="0"/>
       <file name="_layout.tsx" path="/Users/thierno/Documents/cadum/MenuM/app/_layout.tsx">
@@ -47,12 +47,12 @@
       </file>
       <file name="index.tsx" path="/Users/thierno/Documents/cadum/MenuM/app/(main)/index.tsx">
         <metrics statements="6" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="3" coveredmethods="0"/>
-        <line num="47" count="0" type="stmt"/>
-        <line num="48" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="51" count="0" type="stmt"/>
-        <line num="55" count="0" type="stmt"/>
-        <line num="58" count="0" type="stmt"/>
-        <line num="91" count="0" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="49" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="56" count="0" type="stmt"/>
+        <line num="59" count="0" type="stmt"/>
+        <line num="106" count="0" type="stmt"/>
       </file>
       <file name="pannier.tsx" path="/Users/thierno/Documents/cadum/MenuM/app/(main)/pannier.tsx">
         <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
@@ -151,14 +151,16 @@
       </file>
     </package>
     <package name="components.common.Cards">
-      <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+      <metrics statements="4" coveredstatements="0" conditionals="13" coveredconditionals="0" methods="2" coveredmethods="0"/>
       <file name="ArticleCard.tsx" path="/Users/thierno/Documents/cadum/MenuM/components/common/Cards/ArticleCard.tsx">
         <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="10" count="0" type="stmt"/>
       </file>
       <file name="CafeCard.tsx" path="/Users/thierno/Documents/cadum/MenuM/components/common/Cards/CafeCard.tsx">
-        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="10" count="0" type="stmt"/>
+        <metrics statements="3" coveredstatements="0" conditionals="13" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="98" count="0" type="stmt"/>
       </file>
     </package>
     <package name="components.common.Inputs">
@@ -174,7 +176,7 @@
       </file>
     </package>
     <package name="components.layouts">
-      <metrics statements="7" coveredstatements="3" conditionals="15" coveredconditionals="0" methods="4" coveredmethods="1"/>
+      <metrics statements="7" coveredstatements="3" conditionals="16" coveredconditionals="0" methods="4" coveredmethods="1"/>
       <file name="HeaderLayout.tsx" path="/Users/thierno/Documents/cadum/MenuM/components/layouts/HeaderLayout.tsx">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="9" count="1" type="stmt"/>
@@ -182,9 +184,9 @@
         <line num="26" count="1" type="stmt"/>
       </file>
       <file name="HorizontalCardScrollable.tsx" path="/Users/thierno/Documents/cadum/MenuM/components/layouts/HorizontalCardScrollable.tsx">
-        <metrics statements="2" coveredstatements="0" conditionals="14" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="86" count="0" type="stmt"/>
-        <line num="136" count="0" type="stmt"/>
+        <metrics statements="2" coveredstatements="0" conditionals="15" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="90" count="0" type="stmt"/>
+        <line num="144" count="0" type="stmt"/>
       </file>
       <file name="OnboardingLayout.tsx" path="/Users/thierno/Documents/cadum/MenuM/components/layouts/OnboardingLayout.tsx">
         <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>

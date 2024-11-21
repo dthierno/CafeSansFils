@@ -1,16 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`HeaderLayout matches the previous snapshot 1`] = `
-<View
+<RNCSafeAreaView
+  edges={
+    {
+      "bottom": "additive",
+      "left": "additive",
+      "right": "additive",
+      "top": "additive",
+    }
+  }
   style={
     {
       "alignItems": "center",
+      "backgroundColor": "#FFFFFF",
       "borderBottomColor": "#F2F2F7",
       "borderBottomWidth": 1,
       "flexDirection": "row",
       "justifyContent": "space-between",
+      "paddingBottom": -20,
       "paddingHorizontal": 16,
-      "paddingVertical": 12,
+      "paddingTop": 12,
     }
   }
   testID="header-container"
@@ -328,5 +338,5 @@ exports[`HeaderLayout matches the previous snapshot 1`] = `
       </RNSVGGroup>
     </RNSVGSvgView>
   </View>
-</View>
+</RNCSafeAreaView>
 `;

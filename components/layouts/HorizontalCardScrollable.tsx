@@ -44,6 +44,9 @@ type HorizontalCardScrollableLayoutProps = {
 
   /** Gap between each card in the horizontal scroll section (default is 12) */
   scrollGap?: number;
+
+  /** Whether the section should scroll horizontally (default is true) */
+  scroll?: boolean;
 };
 
 /**
@@ -86,6 +89,7 @@ export default function HorizontalCardScrollableLayout({
   dividerHeight = 1,
   titleMarginTop = 0,
   scrollGap = SPACING["sm"],
+  scroll = true,
 }: HorizontalCardScrollableLayoutProps) {
   return (
     <>
@@ -119,16 +123,36 @@ export default function HorizontalCardScrollableLayout({
         </Text>
       )}
 
-      {/* Horizontal Scroll Section */}
-      <ScrollableLayout
-        scrollHorizontal
-        style={[
-          styles.horizontalScroll,
-          { marginTop: scrollMarginTop, marginBottom: scrollMarginBottom },
-        ]}
-      >
-        <View style={[styles.container, { gap: scrollGap }]}>{children}</View>
-      </ScrollableLayout>
+      {scroll ? (
+        <>
+          {/* Horizontal Scroll Section */}
+          <ScrollableLayout
+            scrollHorizontal
+            style={[
+              styles.horizontalScroll,
+              { marginTop: scrollMarginTop, marginBottom: scrollMarginBottom },
+            ]}
+          >
+            <View style={[styles.container, { gap: scrollGap }]}>
+              {children}
+            </View>
+          </ScrollableLayout>
+        </>
+      ) : (
+        // Scroll is not visible on the user' screen
+        <View
+          style={[
+            {
+              paddingHorizontal: SPACING.md,
+              marginTop: scrollMarginTop,
+              marginBottom: scrollMarginBottom,
+              gap: scrollGap,
+            },
+          ]}
+        >
+          {children}
+        </View>
+      )}
 
       {/* Bottom Divider */}
       {dividerBottom ? (

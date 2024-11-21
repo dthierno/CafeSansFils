@@ -1,4 +1,5 @@
 import { View, StyleSheet } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 import SPACING from "@/constants/Spacing";
 import COLORS from "@/constants/Colors";
@@ -13,24 +14,26 @@ export const user = {
 
 export default function HeaderLayout() {
   return (
-    <View style={styles.headerContainer} testID="header-container">
+    <SafeAreaView style={styles.headerContainer} testID="header-container">
       <AccountInfo
         profilePicture={user.profilePicture}
         profileName={user.fullName}
       />
       <IconButton />
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   headerContainer: {
     paddingHorizontal: SPACING.md,
-    paddingVertical: SPACING.sm,
+    paddingBottom: -SPACING.lg,
+    paddingTop: SPACING.sm, 
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     borderBottomWidth: 1,
     borderBottomColor: COLORS.lightGray,
+    backgroundColor: COLORS.white,
   },
 });

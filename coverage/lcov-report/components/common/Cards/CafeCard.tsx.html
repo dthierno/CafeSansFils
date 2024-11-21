@@ -25,28 +25,28 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/3</span>
+                <span class='fraction'>0/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/13</span>
+                <span class='fraction'>0/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/3</span>
+                <span class='fraction'>0/4</span>
             </div>
         
             
@@ -195,7 +195,41 @@
 <a name='L130'></a><a href='#L130'>130</a>
 <a name='L131'></a><a href='#L131'>131</a>
 <a name='L132'></a><a href='#L132'>132</a>
-<a name='L133'></a><a href='#L133'>133</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L133'></a><a href='#L133'>133</a>
+<a name='L134'></a><a href='#L134'>134</a>
+<a name='L135'></a><a href='#L135'>135</a>
+<a name='L136'></a><a href='#L136'>136</a>
+<a name='L137'></a><a href='#L137'>137</a>
+<a name='L138'></a><a href='#L138'>138</a>
+<a name='L139'></a><a href='#L139'>139</a>
+<a name='L140'></a><a href='#L140'>140</a>
+<a name='L141'></a><a href='#L141'>141</a>
+<a name='L142'></a><a href='#L142'>142</a>
+<a name='L143'></a><a href='#L143'>143</a>
+<a name='L144'></a><a href='#L144'>144</a>
+<a name='L145'></a><a href='#L145'>145</a>
+<a name='L146'></a><a href='#L146'>146</a>
+<a name='L147'></a><a href='#L147'>147</a>
+<a name='L148'></a><a href='#L148'>148</a>
+<a name='L149'></a><a href='#L149'>149</a>
+<a name='L150'></a><a href='#L150'>150</a>
+<a name='L151'></a><a href='#L151'>151</a>
+<a name='L152'></a><a href='#L152'>152</a>
+<a name='L153'></a><a href='#L153'>153</a>
+<a name='L154'></a><a href='#L154'>154</a>
+<a name='L155'></a><a href='#L155'>155</a>
+<a name='L156'></a><a href='#L156'>156</a>
+<a name='L157'></a><a href='#L157'>157</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -230,8 +264,22 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -328,7 +376,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, Pressable } from "react-native";
 &nbsp;
 import { Circle } from "lucide-react-native";
 &nbsp;
@@ -336,6 +384,7 @@ import { Circle } from "lucide-react-native";
 import TYPOGRAPHY from "@/constants/Typography";
 import COLORS from "@/constants/Colors";
 import SPACING from "@/constants/Spacing";
+import { router } from "expo-router";
 &nbsp;
 type CafeCardProps = {
   status: "open" | "closing soon" | "closed";
@@ -347,28 +396,51 @@ type CafeCardProps = {
   location: string;
 &nbsp;
   /** The price range of the cafe */
-  priceRange: string;
+  priceRange: "$" | "$$" | "$$$";
 &nbsp;
   /** The rating of the cafe */
   rating: number;
+&nbsp;
+  /** The image of the cafe */
+  image?: string;
+&nbsp;
+  /** The size of the card */
+  size?: "medium" | "large";
+&nbsp;
+  /** The slug of the cafe */
+  slug?: string;
 };
 &nbsp;
-const IMAGE_WIDTH = <span class="cstat-no" title="statement not covered" >318;</span>
+let cardDimensions = <span class="cstat-no" title="statement not covered" >{</span>
+  medium: {
+    width: 318,
+    height: 180,
+    image: require("@/assets/images/placeholder/imagemd.png"),
+  },
+  large: {
+    width: 361,
+    height: 210,
+    image: require("@/assets/images/placeholder/imagexl.png"),
+  },
+};
 &nbsp;
 export default function <span class="fstat-no" title="function not covered" >CafeCard(</span>{
-  status = <span class="branch-0 cbranch-no" title="branch not covered" >"open",</span>
-  name = <span class="branch-0 cbranch-no" title="branch not covered" >"Jean Brillant",</span>
-  location = <span class="branch-0 cbranch-no" title="branch not covered" >"Pavillon Claire McNicole",</span>
-  priceRange = <span class="branch-0 cbranch-no" title="branch not covered" >"$$",</span>
-  rating = <span class="branch-0 cbranch-no" title="branch not covered" >4.8,</span>
+  status,
+  name,
+  location,
+  priceRange,
+  rating,
+  image,
+  size = <span class="branch-0 cbranch-no" title="branch not covered" >"medium",</span>
+  slug = <span class="branch-0 cbranch-no" title="branch not covered" >"INVALID_SLUG",</span>
 }: CafeCardProps) {
 <span class="cstat-no" title="statement not covered" >  return (</span>
-    &lt;View style={styles.container}&gt;
+    &lt;Pressable onPress={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >router.push(`/cafe/${slug}`)}</span> style={{ width: cardDimensions[size].width }}&gt;
       &lt;View&gt;
         &lt;Image
-          source={require("@/assets/images/placeholder/imagemd.png")}
-          width={IMAGE_WIDTH}
-          height={180}
+          source={image ? { uri: image } : cardDimensions[size].image}
+          width={cardDimensions[size].width}
+          height={cardDimensions[size].height}
           style={{ borderRadius: SPACING["sm"] }}
         /&gt;
         &lt;Text
@@ -379,13 +451,13 @@ export default function <span class="fstat-no" title="function not covered" >Caf
           ]}
           testID="icon-button"
         &gt;
-          4.8
+          {rating}
         &lt;/Text&gt;
       &lt;/View&gt;
       &lt;View style={styles.caption}&gt;
         &lt;View style={styles.cafeInfo}&gt;
           &lt;View style={styles.cafeInfoHeader}&gt;
-            &lt;Text style={[TYPOGRAPHY.body.large.semiBold]}&gt;Jean Brillant&lt;/Text&gt;
+            &lt;Text style={[TYPOGRAPHY.body.large.semiBold]}&gt;{name}&lt;/Text&gt;
             &lt;Circle
               width={12}
               height={12}
@@ -410,23 +482,23 @@ export default function <span class="fstat-no" title="function not covered" >Caf
           &lt;Text
             style={[TYPOGRAPHY.body.normal.semiBold, styles.cafeInfoLocation]}
           &gt;
-            Pavillon Claire McNicole
+            {location}
           &lt;/Text&gt;
         &lt;/View&gt;
         &lt;Text
           style={[TYPOGRAPHY.body.normal.base, styles.priceRangeIcon]}
           testID="icon-button"
         &gt;
-          $$
+          {priceRange}
         &lt;/Text&gt;
       &lt;/View&gt;
-    &lt;/View&gt;
+    &lt;/Pressable&gt;
   );
 }
 &nbsp;
 const styles = <span class="cstat-no" title="statement not covered" >StyleSheet.create({</span>
   container: {
-    width: IMAGE_WIDTH,
+    width: cardDimensions["medium"].width,
   },
   caption: {
     marginTop: SPACING["lg"],
@@ -466,7 +538,7 @@ const styles = <span class="cstat-no" title="statement not covered" >StyleSheet.
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-11-20T22:57:20.767Z
+                at 2024-11-21T00:47:32.810Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

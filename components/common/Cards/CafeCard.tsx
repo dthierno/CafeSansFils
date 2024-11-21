@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, Pressable } from "react-native";
 
 import { Circle } from "lucide-react-native";
 
@@ -7,6 +7,7 @@ import { Circle } from "lucide-react-native";
 import TYPOGRAPHY from "@/constants/Typography";
 import COLORS from "@/constants/Colors";
 import SPACING from "@/constants/Spacing";
+import { router } from "expo-router";
 
 type CafeCardProps = {
   status: "open" | "closing soon" | "closed";
@@ -18,7 +19,7 @@ type CafeCardProps = {
   location: string;
 
   /** The price range of the cafe */
-  priceRange: "$" | "$$" | "$$$" ;
+  priceRange: "$" | "$$" | "$$$";
 
   /** The rating of the cafe */
   rating: number;
@@ -28,6 +29,9 @@ type CafeCardProps = {
 
   /** The size of the card */
   size?: "medium" | "large";
+
+  /** The slug of the cafe */
+  slug?: string;
 };
 
 let cardDimensions = {
@@ -51,9 +55,10 @@ export default function CafeCard({
   rating,
   image,
   size = "medium",
+  slug = "INVALID_SLUG",
 }: CafeCardProps) {
   return (
-    <View style={{width: cardDimensions[size].width,}}>
+    <Pressable onPress={() => router.push(`/cafe/${slug}`)} style={{ width: cardDimensions[size].width }}>
       <View>
         <Image
           source={image ? { uri: image } : cardDimensions[size].image}
@@ -110,7 +115,7 @@ export default function CafeCard({
           {priceRange}
         </Text>
       </View>
-    </View>
+    </Pressable>
   );
 }
 

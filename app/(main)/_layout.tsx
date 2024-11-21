@@ -1,3 +1,4 @@
+import HeaderLayout from '@/components/layouts/HeaderLayout';
 import TYPOGRAPHY from '@/constants/Typography';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Tabs } from 'expo-router';
@@ -11,7 +12,7 @@ export default function TabLayout() {
                 name="index"
                 options={{
                     title: 'Home',
-                    headerShown: false,
+                    header: () => <HeaderLayout/>,
                     tabBarIcon: ({ color }) => <FontAwesome size={28} name="home" color={color} />,
                     tabBarLabelStyle: TYPOGRAPHY.body.small.bold,
                 }}

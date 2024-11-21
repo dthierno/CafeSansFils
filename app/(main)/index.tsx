@@ -58,8 +58,7 @@ export default function HomeScreen() {
 
   return (
     <ScrollableLayout>
-      <SafeAreaView >
-        <HeaderLayout />
+      <>
         <View style={styles.locationAndSearchContainer}>
           <SelectLocalisation
             currentLocalisation="Pavillon André Aisenstadt"
@@ -128,16 +127,31 @@ export default function HomeScreen() {
                 <CafeCard name="Jean Brillant" location="Pavillon Claire McNicole" priceRange="$$" rating={4.8} status="open" />
             </HorizontalCardScrollableLayout>
         </View>
-      </SafeAreaView>
+        <HorizontalCardScrollableLayout
+          title="Tous les cafés"
+          titleMarginTop={SPACING["xl"]}
+          scrollMarginTop={SPACING["lg"]}
+          scrollMarginBottom={SPACING["md"]}
+          scrollGap={SPACING["2xl"]}
+          scroll={false}
+        >
+            <CafeCard status={"open"} name={"Jean Brillant"} location={"Pavillon Claire McNicole"} priceRange={"$$"} rating={4.5} size={"large"} slug="1" />
+            <CafeCard status={"open"} name={"Jean Brillant"} location={"Pavillon Claire McNicole"} priceRange={"$$"} rating={4.5} size={"large"} slug="2" />
+            <CafeCard status={"open"} name={"Jean Brillant"} location={"Pavillon Claire McNicole"} priceRange={"$$"} rating={4.5} size={"large"} slug="3" />
+            <CafeCard status={"open"} name={"Jean Brillant"} location={"Pavillon Claire McNicole"} priceRange={"$$"} rating={4.5} size={"large"} slug="4" />
+            <CafeCard status={"open"} name={"Jean Brillant"} location={"Pavillon Claire McNicole"} priceRange={"$$"} rating={4.5} size={"large"} slug="5" />
+        </HorizontalCardScrollableLayout>
+      </>
     </ScrollableLayout>
   );
 }
 
 const styles = StyleSheet.create({
   selectLocalisationContainer: {
-    marginTop: SPACING["lg"],
+    marginTop: 0,
   },
   locationAndSearchContainer: {
+    marginTop: SPACING["md"],
     paddingHorizontal: SPACING["md"],
     alignItems: "center",
     justifyContent: "center",

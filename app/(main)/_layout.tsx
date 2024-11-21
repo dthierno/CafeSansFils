@@ -7,7 +7,7 @@ import { Home, Settings, ShoppingBasket } from 'lucide-react-native';
 
 export default function TabLayout() {
     return (
-        <Tabs screenOptions={{ tabBarActiveTintColor: 'black', tabBarInactiveTintColor: "#89898D" }}>
+        <Tabs screenOptions={{ tabBarActiveTintColor: 'black', tabBarInactiveTintColor: "#89898D", tabBarStyle: {paddingTop: 6} }}>
             <Tabs.Screen
                 name="index"
                 options={{

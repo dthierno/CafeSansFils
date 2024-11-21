@@ -7,6 +7,7 @@ import { Stack } from "expo-router/stack";
 
 import * as SplashScreen from 'expo-splash-screen'; 
 import COLORS from '@/constants/Colors';
+import { GlobalModalProvider } from '@/components/layouts/GlobalModal';
 
 
 SplashScreen.preventAutoHideAsync();
@@ -62,14 +63,16 @@ export default function RootLayout() {
     }
 
     return (
-        <Stack screenOptions={{ 
-            gestureEnabled: false,
-            animation: "none",
-            contentStyle: { backgroundColor: COLORS.white },
-        }}>
-            <Stack.Screen name='(main)' options={{ headerShown: false }} />
-            <Stack.Screen name='(onboarding)' options={{ headerShown: false}} />
-            <Stack.Screen name='(auth)' options={{ headerShown: false}} />
-        </Stack>
+        <GlobalModalProvider>
+            <Stack screenOptions={{ 
+                gestureEnabled: false,
+                animation: "none",
+                contentStyle: { backgroundColor: COLORS.white },
+            }}>
+                <Stack.Screen name='(main)' options={{ headerShown: false }} />
+                <Stack.Screen name='(onboarding)' options={{ headerShown: false}} />
+                <Stack.Screen name='(auth)' options={{ headerShown: false}} />
+            </Stack>
+        </GlobalModalProvider>
     )
 }

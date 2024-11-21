@@ -1,11 +1,18 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Pressable,
+} from "react-native";
 import { ChevronDown, Circle, LucideIcon } from "lucide-react-native";
 
 // Constants
 import COLORS from "@/constants/Colors";
 import SPACING from "@/constants/Spacing";
 import TYPOGRAPHY from "@/constants/Typography";
+import { useModal } from "../layouts/GlobalModal";
 
 type TooltipProps = {
   /** Text label to display inside the tooltip */
@@ -83,9 +90,48 @@ export default function Tooltip({
 }: TooltipProps): JSX.Element {
   const [isPressed, setIsPressed] = React.useState(false);
 
-  function handlePress() {
-    setIsPressed(!isPressed);
+  const modalContext = useModal();
+  const openModal = modalContext ? modalContext.openModal : () => {};
+  const closeModal = modalContext ? modalContext.closeModal : () => {};
 
+  function handleCloseModal() {
+    closeModal();
+    setIsPressed(true);
+  };
+  
+  function handleResetModal() {
+    closeModal();
+    setIsPressed(false);
+  };
+
+  function handlePress() {
+    !showChevron && setIsPressed(!isPressed);
+
+    if (showChevron) {
+      openModal(
+        <View>
+          <Text
+            style={[TYPOGRAPHY.heading.medium.bold, { textAlign: "center" }]}
+          >
+            {label}
+          </Text>
+          <Text
+            style={[TYPOGRAPHY.body.large.medium, { textAlign: "center", margin: SPACING.md }]}
+          >
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque
+            nostrum accusantium autem eos vero consequatur reiciendis quae
+            tenetur possimus sit! 
+          </Text>
+
+          <TouchableOpacity onPress={handleCloseModal} style={styles.closeButton}>
+            <Text style={styles.closeButtonText}>Appliquer</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={handleResetModal} style={styles.resetButton}>
+            <Text style={styles.resetButtonText}>Réintialiser</Text>
+          </TouchableOpacity>
+        </View>
+      );
+    } 
     if (onPress) onPress();
   }
   return (
@@ -94,7 +140,7 @@ export default function Tooltip({
       style={[
         styles.tooltipContainer,
         changeColorOnPress
-          ? !isPressed && !showChevron
+          ? isPressed
             ? { backgroundColor: COLORS.black }
             : { backgroundColor: COLORS.lightGray }
           : { backgroundColor: COLORS.lightGray },
@@ -139,7 +185,7 @@ export default function Tooltip({
               strokeWidth={3}
               color={
                 changeColorOnPress
-                  ? !isPressed && !showChevron
+                  ? isPressed 
                     ? COLORS.white
                     : COLORS.black
                   : COLORS.black
@@ -155,7 +201,7 @@ export default function Tooltip({
         style={[
           TYPOGRAPHY.body.normal.semiBold,
           changeColorOnPress
-            ? !isPressed && !showChevron
+            ? isPressed
               ? { color: COLORS.white }
               : { color: COLORS.black }
             : { color: COLORS.black },
@@ -171,7 +217,7 @@ export default function Tooltip({
           width={16}
           height={16}
           strokeWidth={2.8}
-          color={COLORS.black}
+          color={ isPressed? COLORS.white : COLORS.black}
           testID="chevron-down"
         />
       )}
@@ -191,5 +237,35 @@ const styles = StyleSheet.create({
   },
   iconContainer: {
     marginRight: SPACING.xxs, // Space between icon and label
+  },
+  closeButton: {
+    marginTop: SPACING.md,
+    alignSelf: "center",
+    backgroundColor: COLORS.black,
+    paddingVertical: SPACING.md,
+    paddingHorizontal: SPACING.md,
+    borderRadius: 10,
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  resetButton: {
+    alignSelf: "center",
+    backgroundColor: COLORS.white,
+    paddingVertical: SPACING.md,
+    paddingHorizontal: SPACING.md,
+    borderRadius: 10,
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: SPACING.xs,
+  },
+  closeButtonText: {
+    color: COLORS.white,
+    ...TYPOGRAPHY.body.large.semiBold,
+  },
+  resetButtonText: {
+    color: COLORS.black,
+    ...TYPOGRAPHY.body.large.semiBold,
   },
 });

@@ -8,7 +8,7 @@ import ScrollableLayout from "@/components/layouts/ScrollableLayout";
 import SelectLocalisation from "@/components/common/SelectLocalisation";
 import Search from "@/components/common/Inputs/Search";
 import Tooltip from "@/components/common/Tooltip";
-import { Star, Vegan } from "lucide-react-native";
+import { Coffee, Star, Vegan } from "lucide-react-native";
 import CardScrollableLayout from "@/components/layouts/CardScrollableLayout";
 import CafeCard from "@/components/common/Cards/CafeCard";
 
@@ -65,11 +65,11 @@ export default function HomeScreen() {
           scrollMarginBottom={SPACING["sm"]}
           dividerBottom
         >
-          <Tooltip label="Ouvert" status="green" showChevron={false} />
-          <Tooltip label="Diététique" Icon={Vegan} />
-          <Tooltip label="Prix" />
-          <Tooltip label="Bientôt fermé" status="orange" showChevron={false} />
-          <Tooltip label="Rating" Icon={Star} />
+          <Tooltip label="Ouvert" status="green" showChevron={false} changeColorOnPress />
+          <Tooltip label="Diététique" Icon={Vegan} changeColorOnPress />
+          <Tooltip label="Prix" changeColorOnPress />
+          <Tooltip label="Bientôt fermé" status="orange" showChevron={false} changeColorOnPress />
+          <Tooltip label="Rating" Icon={Star} changeColorOnPress />
         </CardScrollableLayout>
         <View>
             <CardScrollableLayout 

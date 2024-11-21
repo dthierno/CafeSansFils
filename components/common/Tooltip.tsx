@@ -20,25 +20,28 @@ type TooltipProps = {
   /** Whether to show the chevron icon at the end of the tooltip (default: true) */
   showChevron?: boolean;
 
+  /** Whether to change the tooltip color when pressed (default: false) */
+  changeColorOnPress?: boolean;
+
   /** Callback function triggered when the tooltip is pressed */
   onPress?: () => void;
 };
 
 /**
  * ## Tooltip
- * 
- * A versatile tooltip component for displaying labels, optional status indicators, 
+ *
+ * A versatile tooltip component for displaying labels, optional status indicators,
  * and interactive chevrons. The tooltip supports custom icons, dynamic statuses,
  * and press interactions.
- * 
+ *
  * ### Features
  * - Customizable status (`green`, `orange`, `red`) with default circular icons.
  * - Optional chevron icon to indicate expandable content or actions.
  * - Supports custom icons for further flexibility.
  * - Pressable for interactions (e.g., navigating or triggering actions).
- * 
+ *
  * ### Example Usage
- * 
+ *
  * **Basic Example**
  * ```tsx
  * <Tooltip
@@ -46,18 +49,18 @@ type TooltipProps = {
  *   status="green"
  * />
  * ```
- * 
+ *
  * **With Custom Icon**
  * ```tsx
  * import { Globe } from "lucide-react-native";
- * 
+ *
  * <Tooltip
  *   label="Global"
  *   Icon={Globe}
  *   onPress={() => console.log("Tooltip pressed!")}
  * />
  * ```
- * 
+ *
  * **Without Chevron**
  * ```tsx
  * <Tooltip
@@ -66,7 +69,7 @@ type TooltipProps = {
  *   showChevron={false}
  * />
  * ```
- * 
+ *
  * @param TooltipProps - Props for the Tooltip component.
  * @returns {JSX.Element} The rendered tooltip component.
  */
@@ -75,12 +78,27 @@ export default function Tooltip({
   status,
   Icon = status && Circle, // Default to Circle if a status is provided
   showChevron = true,
+  changeColorOnPress = false,
   onPress,
 }: TooltipProps): JSX.Element {
+  const [isPressed, setIsPressed] = React.useState(false);
+
+  function handlePress() {
+    setIsPressed(!isPressed);
+
+    if (onPress) onPress();
+  }
   return (
     <TouchableOpacity
-      onPress={onPress}
-      style={styles.tooltipContainer}
+      onPress={handlePress}
+      style={[
+        styles.tooltipContainer,
+        changeColorOnPress
+          ? !isPressed && !showChevron
+            ? { backgroundColor: COLORS.black }
+            : { backgroundColor: COLORS.lightGray }
+          : { backgroundColor: COLORS.lightGray },
+      ]}
       activeOpacity={0.7}
       testID="tooltip-container"
     >
@@ -119,7 +137,13 @@ export default function Tooltip({
               width={14}
               height={14}
               strokeWidth={3}
-              color={COLORS.black}
+              color={
+                changeColorOnPress
+                  ? !isPressed && !showChevron
+                    ? COLORS.white
+                    : COLORS.black
+                  : COLORS.black
+              }
               testID="tooltip-icon"
             />
           )}
@@ -130,7 +154,11 @@ export default function Tooltip({
       <Text
         style={[
           TYPOGRAPHY.body.normal.semiBold,
-          styles.tooltipText,
+          changeColorOnPress
+            ? !isPressed && !showChevron
+              ? { color: COLORS.white }
+              : { color: COLORS.black }
+            : { color: COLORS.black },
           !showChevron && { marginRight: SPACING.xxs }, // Adjust margin if no chevron
         ]}
       >
@@ -158,14 +186,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: SPACING.md,
     paddingVertical: 10,
-    backgroundColor: COLORS.lightGray,
     borderRadius: 500, // Rounded appearance
     gap: SPACING.xxs, // Space between elements
   },
   iconContainer: {
     marginRight: SPACING.xxs, // Space between icon and label
-  },
-  tooltipText: {
-    color: COLORS.black,
   },
 });

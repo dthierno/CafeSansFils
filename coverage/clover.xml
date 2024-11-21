@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1732162524143" clover="3.2.0">
-  <project timestamp="1732162524143" name="All files">
-    <metrics statements="102" coveredstatements="22" conditionals="64" coveredconditionals="30" methods="43" coveredmethods="9" elements="209" coveredelements="61" complexity="0" loc="102" ncloc="102" packages="14" files="36" classes="36"/>
+<coverage generated="1732165322469" clover="3.2.0">
+  <project timestamp="1732165322469" name="All files">
+    <metrics statements="105" coveredstatements="25" conditionals="85" coveredconditionals="35" methods="44" coveredmethods="10" elements="234" coveredelements="70" complexity="0" loc="105" ncloc="105" packages="14" files="36" classes="36"/>
     <package name="app">
       <metrics statements="8" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="2" coveredmethods="0"/>
       <file name="_layout.tsx" path="/Users/thierno/Documents/cadum/MenuM/app/_layout.tsx">
@@ -101,7 +101,7 @@
       </file>
     </package>
     <package name="components.common">
-      <metrics statements="9" coveredstatements="5" conditionals="17" coveredconditionals="16" methods="6" coveredmethods="3"/>
+      <metrics statements="12" coveredstatements="8" conditionals="38" coveredconditionals="21" methods="7" coveredmethods="4"/>
       <file name="Divider.tsx" path="/Users/thierno/Documents/cadum/MenuM/components/common/Divider.tsx">
         <metrics statements="2" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="16" count="0" type="stmt"/>
@@ -122,9 +122,12 @@
         <line num="58" count="1" type="stmt"/>
       </file>
       <file name="Tooltip.tsx" path="/Users/thierno/Documents/cadum/MenuM/components/common/Tooltip.tsx">
-        <metrics statements="2" coveredstatements="2" conditionals="16" coveredconditionals="16" methods="1" coveredmethods="1"/>
-        <line num="80" count="9" type="stmt"/>
-        <line num="155" count="1" type="stmt"/>
+        <metrics statements="5" coveredstatements="5" conditionals="37" coveredconditionals="21" methods="2" coveredmethods="2"/>
+        <line num="84" count="10" type="stmt"/>
+        <line num="87" count="1" type="stmt"/>
+        <line num="89" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="91" count="10" type="stmt"/>
+        <line num="183" count="1" type="stmt"/>
       </file>
     </package>
     <package name="components.common.Auth">

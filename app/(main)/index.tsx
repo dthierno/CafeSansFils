@@ -1,27 +1,15 @@
-import React, { useState } from "react";
-import {
-  FlatList,
-  ScrollView,
-  Text,
-  View,
-  StyleSheet,
-  Image,
-} from "react-native";
-import { Link, Redirect } from "expo-router";
-import { SafeAreaView } from "react-native-safe-area-context";
+import React from "react";
+import { View, StyleSheet, Image } from "react-native";
+import { Redirect } from "expo-router";
 
 import SPACING from "@/constants/Spacing";
-import TYPOGRAPHY from "@/constants/Typography";
-import COLORS from "@/constants/Colors";
 
 import ScrollableLayout from "@/components/layouts/ScrollableLayout";
-import HeaderLayout from "@/components/layouts/HeaderLayout";
 import SelectLocalisation from "@/components/common/SelectLocalisation";
 import Search from "@/components/common/Inputs/Search";
 import Tooltip from "@/components/common/Tooltip";
-import { DollarSign, DollarSignIcon, Star, Vegan } from "lucide-react-native";
-import Divider from "@/components/common/Divider";
-import HorizontalCardScrollableLayout from "@/components/layouts/HorizontalCardScrollable";
+import { Star, Vegan } from "lucide-react-native";
+import CardScrollableLayout from "@/components/layouts/CardScrollableLayout";
 import CafeCard from "@/components/common/Cards/CafeCard";
 
 /**
@@ -72,7 +60,7 @@ export default function HomeScreen() {
           width={361}
           height={210}
         />
-        <HorizontalCardScrollableLayout
+        <CardScrollableLayout
           scrollMarginTop={SPACING["md"]}
           scrollMarginBottom={SPACING["sm"]}
           dividerBottom
@@ -82,9 +70,9 @@ export default function HomeScreen() {
           <Tooltip label="Prix" />
           <Tooltip label="Bientôt fermé" status="orange" showChevron={false} />
           <Tooltip label="Rating" Icon={Star} />
-        </HorizontalCardScrollableLayout>
+        </CardScrollableLayout>
         <View>
-            <HorizontalCardScrollableLayout 
+            <CardScrollableLayout 
             title="Tendances du moment"
             titleMarginTop={SPACING["xl"]}
             scrollMarginTop={SPACING["xs"]}
@@ -97,8 +85,8 @@ export default function HomeScreen() {
                 <CafeCard name="Jean Brillant" location="Pavillon Claire McNicole" priceRange="$$" rating={4.8} status="open" />
                 <CafeCard name="Jean Brillant" location="Pavillon Claire McNicole" priceRange="$$" rating={4.8} status="closed" />
                 <CafeCard name="Jean Brillant" location="Pavillon Claire McNicole" priceRange="$$" rating={4.8} status="open" />
-            </HorizontalCardScrollableLayout>
-            <HorizontalCardScrollableLayout 
+            </CardScrollableLayout>
+            <CardScrollableLayout 
             title="Proches de vous"
             titleMarginTop={SPACING["xl"]}
             scrollMarginTop={SPACING["xs"]}
@@ -111,8 +99,8 @@ export default function HomeScreen() {
                 <CafeCard name="Jean Brillant" location="Pavillon Claire McNicole" priceRange="$$" rating={4.8} status="open" />
                 <CafeCard name="Jean Brillant" location="Pavillon Claire McNicole" priceRange="$$" rating={4.8} status="closed" />
                 <CafeCard name="Jean Brillant" location="Pavillon Claire McNicole" priceRange="$$" rating={4.8} status="open" />
-            </HorizontalCardScrollableLayout>
-            <HorizontalCardScrollableLayout 
+            </CardScrollableLayout>
+            <CardScrollableLayout 
             title="Promotions en cours"
             titleMarginTop={SPACING["xl"]}
             scrollMarginTop={SPACING["xs"]}
@@ -125,9 +113,9 @@ export default function HomeScreen() {
                 <CafeCard name="Jean Brillant" location="Pavillon Claire McNicole" priceRange="$$" rating={4.8} status="open" />
                 <CafeCard name="Jean Brillant" location="Pavillon Claire McNicole" priceRange="$$" rating={4.8} status="closed" />
                 <CafeCard name="Jean Brillant" location="Pavillon Claire McNicole" priceRange="$$" rating={4.8} status="open" />
-            </HorizontalCardScrollableLayout>
+            </CardScrollableLayout>
         </View>
-        <HorizontalCardScrollableLayout
+        <CardScrollableLayout
           title="Tous les cafés"
           titleMarginTop={SPACING["xl"]}
           scrollMarginTop={SPACING["lg"]}
@@ -140,7 +128,7 @@ export default function HomeScreen() {
             <CafeCard status={"open"} name={"Jean Brillant"} location={"Pavillon Claire McNicole"} priceRange={"$$"} rating={4.5} size={"large"} slug="3" />
             <CafeCard status={"open"} name={"Jean Brillant"} location={"Pavillon Claire McNicole"} priceRange={"$$"} rating={4.5} size={"large"} slug="4" />
             <CafeCard status={"open"} name={"Jean Brillant"} location={"Pavillon Claire McNicole"} priceRange={"$$"} rating={4.5} size={"large"} slug="5" />
-        </HorizontalCardScrollableLayout>
+        </CardScrollableLayout>
       </>
     </ScrollableLayout>
   );

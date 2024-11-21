@@ -11,7 +11,7 @@ import SPACING from "@/constants/Spacing";
 import ScrollableLayout from "./ScrollableLayout";
 import Divider from "../common/Divider";
 
-type HorizontalCardScrollableLayoutProps = {
+type CardScrollableLayoutProps = {
   /** Title to display above the horizontal scroll section */
   title?: string;
 
@@ -50,10 +50,12 @@ type HorizontalCardScrollableLayoutProps = {
 };
 
 /**
- * ## HorizontalCardScrollableLayout
+ * ## CardScrollableLayout
  *
  * A reusable layout component for creating horizontally scrollable sections
- * with optional dividers, title, and customizable margins.
+ * with optional dividers, title, and customizable margins. By default, the
+ * the component will render a horizontal scroll. You can disable the 
+ * horizontal scroll by setting the `scroll` prop to `false`.
  *
  * **Note**: The scrollable component inside this layout has some default
  * vertical padding of 16px to make it easier to scroll. You can't remove
@@ -61,7 +63,7 @@ type HorizontalCardScrollableLayoutProps = {
  *
  * ### Example Usage
  * ```tsx
- * <HorizontalCardScrollableLayout
+ * <CardScrollableLayout
  *   title="Popular Cafés"
  *   dividerTop
  *   dividerBottom
@@ -72,12 +74,12 @@ type HorizontalCardScrollableLayoutProps = {
  *   <Card title="Café 1" />
  *   <Card title="Café 2" />
  *   <Card title="Café 3" />
- * </HorizontalCardScrollableLayout>
+ * </CardScrollableLayout>
  * ```
  *
- * @param HorizontalCardScrollableLayoutProps - Component props.
+ * @param CardScrollableLayoutProps - Component props.
  */
-export default function HorizontalCardScrollableLayout({
+export default function CardScrollableLayout({
   title,
   children,
   scrollMarginTop = 0,
@@ -90,7 +92,7 @@ export default function HorizontalCardScrollableLayout({
   titleMarginTop = 0,
   scrollGap = SPACING["sm"],
   scroll = true,
-}: HorizontalCardScrollableLayoutProps) {
+}: CardScrollableLayoutProps) {
   return (
     <>
       {/* Top Divider */}

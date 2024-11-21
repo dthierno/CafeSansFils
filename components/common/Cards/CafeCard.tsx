@@ -1,4 +1,3 @@
-import React from "react";
 import { View, Text, StyleSheet, Image, Pressable } from "react-native";
 
 import { Circle } from "lucide-react-native";
@@ -47,6 +46,30 @@ let cardDimensions = {
   },
 };
 
+/**
+ * ## CafeCard Component
+ *
+ * A reusable card component that displays information about a cafe, including its name, location,
+ * price range, rating, and status. The card also includes an image and supports navigation to the
+ * cafe's details page when pressed.
+ *
+ * ### Example Usage
+ *
+ * ```tsx
+ * <CafeCard
+ *   status="open"
+ *   name="Cozy Coffee"
+ *   location="123 Coffee Lane"
+ *   priceRange="$$"
+ *   rating={4.5}
+ *   image="https://example.com/image.jpg"
+ *   size="large"
+ *   slug="cozy-coffee"
+ * />
+ * ```
+ *
+ * @param {CafeCardProps} props - The props for the CafeCard component.
+ */
 export default function CafeCard({
   status,
   name,
@@ -58,13 +81,18 @@ export default function CafeCard({
   slug = "INVALID_SLUG",
 }: CafeCardProps) {
   return (
-    <Pressable onPress={() => router.push(`/cafe/${slug}`)} style={{ width: cardDimensions[size].width }}>
+    <Pressable
+      onPress={() => router.push(`/cafe/${slug}`)}
+      style={{ width: cardDimensions[size].width }}
+      testID="button"
+    >
       <View>
         <Image
           source={image ? { uri: image } : cardDimensions[size].image}
           width={cardDimensions[size].width}
           height={cardDimensions[size].height}
           style={{ borderRadius: SPACING["sm"] }}
+          testID="image"
         />
         <Text
           style={[
@@ -120,13 +148,10 @@ export default function CafeCard({
 }
 
 const styles = StyleSheet.create({
-  container: {
-    width: cardDimensions["medium"].width,
-  },
   caption: {
+    justifyContent: "space-between",
     marginTop: SPACING["lg"],
     flexDirection: "row",
-    justifyContent: "space-between",
     alignItems: "center",
   },
   cafeInfo: {
@@ -144,13 +169,13 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.lightGray,
     paddingHorizontal: SPACING.xs,
     paddingVertical: SPACING.xs,
-    borderRadius: 500,
     justifyContent: "center",
+    borderRadius: 500,
   },
   rating: {
+    backgroundColor: COLORS.white, // FIXME: Remove this line later
     position: "absolute",
-    top: SPACING.sm,
     right: SPACING.sm,
-    backgroundColor: COLORS.white, // FIXME: Remove this
+    top: SPACING.sm,
   },
 });

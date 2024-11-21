@@ -4,7 +4,6 @@ import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Tabs } from 'expo-router';
 import { Home, Settings, ShoppingBasket } from 'lucide-react-native';
 
-// TODO: Find better icons and replace the FontAwesome icons.
 
 export default function TabLayout() {
     return (

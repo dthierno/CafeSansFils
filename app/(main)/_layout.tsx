@@ -2,6 +2,7 @@ import HeaderLayout from '@/components/layouts/HeaderLayout';
 import TYPOGRAPHY from '@/constants/Typography';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Tabs } from 'expo-router';
+import { Home, Settings, ShoppingBasket } from 'lucide-react-native';
 
 // TODO: Find better icons and replace the FontAwesome icons.
 
@@ -13,7 +14,7 @@ export default function TabLayout() {
                 options={{
                     title: 'Home',
                     header: () => <HeaderLayout/>,
-                    tabBarIcon: ({ color }) => <FontAwesome size={28} name="home" color={color} />,
+                    tabBarIcon: ({ color }) => <Home size={28} color={color} />,
                     tabBarLabelStyle: TYPOGRAPHY.body.small.bold,
                 }}
             />
@@ -31,7 +32,7 @@ export default function TabLayout() {
                 options={{
                     title: 'Pannier',
                     headerShown: false,
-                    tabBarIcon: ({ color }) => <FontAwesome size={24} name="shopping-basket" color={color} />,
+                    tabBarIcon: ({ color }) => <ShoppingBasket size={28} color={color} />,
                     tabBarLabelStyle: TYPOGRAPHY.body.small.bold,
                 }}
             />
@@ -40,7 +41,7 @@ export default function TabLayout() {
                 options={{
                     title: 'Settings',
                     headerShown: false,
-                    tabBarIcon: ({ color }) => <FontAwesome size={28} name="cog" color={color} />,
+                    tabBarIcon: ({ color }) => <Settings size={28} color={color} />,
                     tabBarLabelStyle: TYPOGRAPHY.body.small.bold,
                 }}
             />

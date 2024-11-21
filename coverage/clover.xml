@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1732150496357" clover="3.2.0">
-  <project timestamp="1732150496357" name="All files">
+<coverage generated="1732159579218" clover="3.2.0">
+  <project timestamp="1732159579218" name="All files">
     <metrics statements="102" coveredstatements="18" conditionals="64" coveredconditionals="19" methods="43" coveredmethods="7" elements="209" coveredelements="44" complexity="0" loc="102" ncloc="102" packages="14" files="36" classes="36"/>
     <package name="app">
       <metrics statements="8" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="2" coveredmethods="0"/>
@@ -35,12 +35,12 @@
       <metrics statements="15" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="12" coveredmethods="0"/>
       <file name="_layout.tsx" path="/Users/thierno/Documents/cadum/MenuM/app/(main)/_layout.tsx">
         <metrics statements="6" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="0"/>
-        <line num="9" count="0" type="stmt"/>
-        <line num="15" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
         <line num="16" count="0" type="stmt"/>
-        <line num="25" count="0" type="stmt"/>
-        <line num="34" count="0" type="stmt"/>
-        <line num="43" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
       </file>
       <file name="favoris.tsx" path="/Users/thierno/Documents/cadum/MenuM/app/(main)/favoris.tsx">
         <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>

@@ -41,7 +41,9 @@ const styles = StyleSheet.create({
     height: SPACING["8xl"],
     borderRadius: "100%",
     borderWidth: 4,
-    borderColor: "rgba(0, 0, 0, 0.1)",
+    borderColor: "rgba(0, 0, 0, 0.1)", // Not from any university
+    // borderColor: "rgba(0, 87, 172, .2)", // From University of Montreal
+    // borderColor: "rgba(237, 27, 47, .2)", // From McGill University
   },
   welcomeText: {},
   userFullName: {

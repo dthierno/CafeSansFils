@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, Image } from "react-native";
+import { View, StyleSheet, Image, Text } from "react-native";
 import { Redirect } from "expo-router";
 
 import SPACING from "@/constants/Spacing";
@@ -11,6 +11,9 @@ import Tooltip from "@/components/common/Tooltip";
 import { Coffee, Star, Vegan } from "lucide-react-native";
 import CardScrollableLayout from "@/components/layouts/CardScrollableLayout";
 import CafeCard from "@/components/common/Cards/CafeCard";
+import TYPOGRAPHY from "@/constants/Typography";
+import InfoModalLayout from "@/components/layouts/InfoModalLayout";
+import FilterModalLayout from "@/components/layouts/FilterModalLayout";
 
 /**
  * `HomeScreen` component that conditionally renders content based on user authentication status.
@@ -65,9 +68,9 @@ export default function HomeScreen() {
           scrollMarginBottom={SPACING["sm"]}
           dividerBottom
         >
-          <Tooltip label="Ouvert" status="green" showChevron={false} changeColorOnPress />
-          <Tooltip label="Diététique" Icon={Vegan} changeColorOnPress />
-          <Tooltip label="Prix" changeColorOnPress />
+          <Tooltip label="Ouvert" status="green" onPress={() => console.log("PRESSED")} showChevron={false} changeColorOnPress />
+          <Tooltip label="Diététique" Icon={Vegan} changeColorOnPress></Tooltip>
+          <Tooltip label="Prix" changeColorOnPress></Tooltip>
           <Tooltip label="Bientôt fermé" status="orange" showChevron={false} changeColorOnPress />
           <Tooltip label="Rating" Icon={Star} changeColorOnPress />
         </CardScrollableLayout>

@@ -13,6 +13,8 @@ import COLORS from "@/constants/Colors";
 import SPACING from "@/constants/Spacing";
 import TYPOGRAPHY from "@/constants/Typography";
 import { useModal } from "../layouts/GlobalModal";
+import FilterButtons from "./Buttons/FilterButtons";
+import FilterModalLayout from "../layouts/FilterModalLayout";
 
 type TooltipProps = {
   /** Text label to display inside the tooltip */
@@ -30,6 +32,9 @@ type TooltipProps = {
   /** Whether to change the tooltip color when pressed (default: false) */
   changeColorOnPress?: boolean;
 
+  /** Optional children to display inside the tooltip */
+  children?: React.ReactNode;
+
   /** Callback function triggered when the tooltip is pressed */
   onPress?: () => void;
 };
@@ -39,7 +44,8 @@ type TooltipProps = {
  *
  * A versatile tooltip component for displaying labels, optional status indicators,
  * and interactive chevrons. The tooltip supports custom icons, dynamic statuses,
- * and press interactions.
+ * and press interactions. When `showChevron` is enabled, you'll need to provide
+ * a children component to display inside the modal.
  *
  * ### Features
  * - Customizable status (`green`, `orange`, `red`) with default circular icons.
@@ -81,6 +87,7 @@ type TooltipProps = {
  * @returns {JSX.Element} The rendered tooltip component.
  */
 export default function Tooltip({
+  children,
   label,
   status,
   Icon = status && Circle, // Default to Circle if a status is provided
@@ -94,15 +101,16 @@ export default function Tooltip({
   const openModal = modalContext ? modalContext.openModal : () => {};
   const closeModal = modalContext ? modalContext.closeModal : () => {};
 
-  function handleCloseModal() {
+  function handleApplyFilter() {
     closeModal();
     setIsPressed(true);
-  };
-  
-  function handleResetModal() {
+    onPress && onPress();
+  }
+
+  function handleResetFilter() {
     closeModal();
     setIsPressed(false);
-  };
+  }
 
   function handlePress() {
     !showChevron && setIsPressed(!isPressed);
@@ -110,29 +118,18 @@ export default function Tooltip({
     if (showChevron) {
       openModal(
         <View>
-          <Text
-            style={[TYPOGRAPHY.heading.medium.bold, { textAlign: "center" }]}
+          <FilterModalLayout
+            title={label}
+            handleApplyFilter={handleApplyFilter}
+            handleResetFilter={handleResetFilter}
           >
-            {label}
-          </Text>
-          <Text
-            style={[TYPOGRAPHY.body.large.medium, { textAlign: "center", margin: SPACING.md }]}
-          >
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque
-            nostrum accusantium autem eos vero consequatur reiciendis quae
-            tenetur possimus sit! 
-          </Text>
-
-          <TouchableOpacity onPress={handleCloseModal} style={styles.closeButton}>
-            <Text style={styles.closeButtonText}>Appliquer</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={handleResetModal} style={styles.resetButton}>
-            <Text style={styles.resetButtonText}>Réintialiser</Text>
-          </TouchableOpacity>
+            {/* Forms elements for the filter like search box, multi-select */}
+            {children}
+          </FilterModalLayout>
         </View>
       );
-    } 
-    if (onPress) onPress();
+    }
+    if (onPress && !showChevron) onPress();
   }
   return (
     <TouchableOpacity
@@ -185,7 +182,7 @@ export default function Tooltip({
               strokeWidth={3}
               color={
                 changeColorOnPress
-                  ? isPressed 
+                  ? isPressed
                     ? COLORS.white
                     : COLORS.black
                   : COLORS.black
@@ -217,11 +214,35 @@ export default function Tooltip({
           width={16}
           height={16}
           strokeWidth={2.8}
-          color={ isPressed? COLORS.white : COLORS.black}
+          color={isPressed ? COLORS.white : COLORS.black}
           testID="chevron-down"
         />
       )}
     </TouchableOpacity>
+  );
+}
+
+function InfoModalLayout({
+  title,
+  description = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque nostrum accusantium autem eos vero consequatur reiciendis quae tenetur possimus sit!",
+}: {
+  title?: string;
+  description?: string;
+}) {
+  return (
+    <>
+      <Text style={[TYPOGRAPHY.heading.medium.bold, { textAlign: "center" }]}>
+        {title}
+      </Text>
+      <Text
+        style={[
+          TYPOGRAPHY.body.large.medium,
+          { textAlign: "center", margin: SPACING.md },
+        ]}
+      >
+        {description}
+      </Text>
+    </>
   );
 }
 
@@ -237,35 +258,5 @@ const styles = StyleSheet.create({
   },
   iconContainer: {
     marginRight: SPACING.xxs, // Space between icon and label
-  },
-  closeButton: {
-    marginTop: SPACING.md,
-    alignSelf: "center",
-    backgroundColor: COLORS.black,
-    paddingVertical: SPACING.md,
-    paddingHorizontal: SPACING.md,
-    borderRadius: 10,
-    width: "100%",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  resetButton: {
-    alignSelf: "center",
-    backgroundColor: COLORS.white,
-    paddingVertical: SPACING.md,
-    paddingHorizontal: SPACING.md,
-    borderRadius: 10,
-    width: "100%",
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: SPACING.xs,
-  },
-  closeButtonText: {
-    color: COLORS.white,
-    ...TYPOGRAPHY.body.large.semiBold,
-  },
-  resetButtonText: {
-    color: COLORS.black,
-    ...TYPOGRAPHY.body.large.semiBold,
   },
 });

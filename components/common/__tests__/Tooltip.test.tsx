@@ -58,7 +58,7 @@ describe("Tooltip Component", () => {
   });
 
   it("triggers onPress callback when pressed", () => {
-    render(<Tooltip label="Pressable Tooltip" onPress={mockOnPress} />);
+    render(<Tooltip label="Pressable Tooltip" onPress={mockOnPress} showChevron={false} />);
     const tooltip = screen.getByTestId("tooltip-container");
 
     // Simulate a press

@@ -20,7 +20,7 @@ exports[`HeaderLayout matches the previous snapshot 1`] = `
       "justifyContent": "space-between",
       "paddingBottom": -20,
       "paddingHorizontal": 16,
-      "paddingTop": 12,
+      "paddingTop": 8,
     }
   }
   testID="header-container"

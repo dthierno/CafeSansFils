@@ -113,7 +113,7 @@ exports[`HeaderLayout matches the previous snapshot 1`] = `
     style={
       {
         "backgroundColor": "#F2F2F7",
-        "borderRadius": "100%",
+        "borderRadius": 100,
         "opacity": 1,
         "padding": 8,
       }

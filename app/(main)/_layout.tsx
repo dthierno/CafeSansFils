@@ -1,7 +1,7 @@
-import HeaderLayout from '@/components/layouts/HeaderLayout';
+import { Tabs } from 'expo-router';
 import TYPOGRAPHY from '@/constants/Typography';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { Tabs } from 'expo-router';
+import HeaderLayout from '@/components/layouts/HeaderLayout';
 import { Home, Settings, ShoppingBasket } from 'lucide-react-native';
 
 

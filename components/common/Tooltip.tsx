@@ -12,8 +12,8 @@ import { ChevronDown, Circle, LucideIcon } from "lucide-react-native";
 import COLORS from "@/constants/Colors";
 import SPACING from "@/constants/Spacing";
 import TYPOGRAPHY from "@/constants/Typography";
+
 import { useModal } from "../layouts/GlobalModal";
-import FilterButtons from "./Buttons/FilterButtons";
 import FilterModalLayout from "../layouts/FilterModalLayout";
 
 type TooltipProps = {

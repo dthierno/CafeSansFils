@@ -11,6 +11,8 @@ import { ChevronDown, MapPin } from "lucide-react-native";
 import TYPOGRAPHY from "@/constants/Typography";
 import COLORS from "@/constants/Colors";
 import SPACING from "@/constants/Spacing";
+import { useModal } from "../layouts/GlobalModal";
+import InfoModalLayout from "../layouts/InfoModalLayout";
 
 type SelectLocalisationProps = {
   currentLocalisation: string;
@@ -21,8 +23,18 @@ export default function SelectLocalisation({
   currentLocalisation,
   style,
 }: SelectLocalisationProps) {
+  const modalContext = useModal();
+  const openModal = modalContext ? modalContext.openModal : () => {};
+  const closeModal = modalContext ? modalContext.closeModal : () => {};
   function handlePress(event: GestureResponderEvent): void {
     console.warn("`handlePress` function not implemented.");
+    openModal(
+        <InfoModalLayout
+            title="Localisation"
+            buttonTitle="Fermer"
+            buttonAction={() => closeModal()}
+        />
+    );
   }
   return (
     <TouchableOpacity

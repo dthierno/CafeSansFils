@@ -1,9 +1,7 @@
-// components/ScrollableLayout.js
 import React from "react";
 import { ScrollView, StyleProp, ViewStyle } from "react-native";
+
 import COLORS from "@/constants/Colors";
-import { Slot } from "expo-router";
-import SPACING from "@/constants/Spacing";
 
 type ScrollableLayoutProps = {
   children: React.ReactNode;

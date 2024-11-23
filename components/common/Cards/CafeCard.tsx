@@ -1,12 +1,11 @@
 import { View, Text, StyleSheet, Image, Pressable } from "react-native";
-
 import { Circle } from "lucide-react-native";
+import { router } from "expo-router";
 
-// Constants
+
 import TYPOGRAPHY from "@/constants/Typography";
 import COLORS from "@/constants/Colors";
 import SPACING from "@/constants/Spacing";
-import { router } from "expo-router";
 
 type CafeCardProps = {
   status: "open" | "closing soon" | "closed";

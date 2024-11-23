@@ -1,7 +1,9 @@
-import SPACING from "@/constants/Spacing";
-import TYPOGRAPHY from "@/constants/Typography";
 import React from "react";
 import { StyleSheet, Text } from "react-native";
+
+import SPACING from "@/constants/Spacing";
+import TYPOGRAPHY from "@/constants/Typography";
+
 import Button from "../common/Buttons/Button";
 
 type InfoModalLayoutProps = {

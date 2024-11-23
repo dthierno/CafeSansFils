@@ -168,8 +168,7 @@
 <a name='L103'></a><a href='#L103'>103</a>
 <a name='L104'></a><a href='#L104'>104</a>
 <a name='L105'></a><a href='#L105'>105</a>
-<a name='L106'></a><a href='#L106'>106</a>
-<a name='L107'></a><a href='#L107'>107</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L106'></a><a href='#L106'>106</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -188,12 +187,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">13x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -241,7 +239,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -275,24 +273,23 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { useState, createContext, useContext, useRef, useEffect } from "react";
-import {
-    Modal,
-    View,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    Pressable,
-    Animated,
-} from "react-native";
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, {
+  useState,
+  createContext,
+  useContext,
+  useRef,
+  useEffect,
+} from "react";
+import { Modal, StyleSheet, Pressable, Animated } from "react-native";
+&nbsp;
 import COLORS from "@/constants/Colors";
 import SPACING from "@/constants/Spacing";
 import TYPOGRAPHY from "@/constants/Typography";
 &nbsp;
 // Create a context to manage the modal's visibility and content
 interface ModalContextType {
-    openModal: (body: React.ReactNode) =&gt; void;
-    closeModal: () =&gt; void;
+  openModal: (body: React.ReactNode) =&gt; void;
+  closeModal: () =&gt; void;
 }
 &nbsp;
 const ModalContext = createContext&lt;ModalContextType | null&gt;(null);
@@ -300,86 +297,86 @@ const ModalContext = createContext&lt;ModalContextType | null&gt;(null);
 export const useModal = () =&gt; useContext(ModalContext);
 &nbsp;
 export const GlobalModalProvider = <span class="fstat-no" title="function not covered" >({</span>
-    children,
+  children,
 }: {
-    children: React.ReactNode;
+  children: React.ReactNode;
 }) =&gt; {
-    const [isVisible, setIsVisible] = <span class="cstat-no" title="statement not covered" >useState(false);</span>
-    const [customBody, setCustomBody] = <span class="cstat-no" title="statement not covered" >useState&lt;React.ReactNode&gt;(null);</span>
-    const slideAnim = <span class="cstat-no" title="statement not covered" >useRef(new Animated.Value(300)).current;</span> // Initial position off-screen
+  const [isVisible, setIsVisible] = <span class="cstat-no" title="statement not covered" >useState(false);</span>
+  const [customBody, setCustomBody] = <span class="cstat-no" title="statement not covered" >useState&lt;React.ReactNode&gt;(null);</span>
+  const slideAnim = <span class="cstat-no" title="statement not covered" >useRef(new Animated.Value(300)).current;</span> // Initial position off-screen
 &nbsp;
-    const openModal = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(b</span>ody: React.ReactNode) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        setCustomBody(body);</span>
-<span class="cstat-no" title="statement not covered" >        setIsVisible(true);</span>
-<span class="cstat-no" title="statement not covered" >        Animated.timing(slideAnim, {</span>
-            toValue: 0,
-            duration: 300,
-            useNativeDriver: true,
-        }).start();
-    };
+  const openModal = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(b</span>ody: React.ReactNode) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    setCustomBody(body);</span>
+<span class="cstat-no" title="statement not covered" >    setIsVisible(true);</span>
+<span class="cstat-no" title="statement not covered" >    Animated.timing(slideAnim, {</span>
+      toValue: 0,
+      duration: 300,
+      useNativeDriver: true,
+    }).start();
+  };
 &nbsp;
-    const closeModal = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        Animated.timing(slideAnim, {</span>
-            toValue: 300,
-            duration: 300,
-            useNativeDriver: true,
-        }).start(<span class="fstat-no" title="function not covered" >()</span> =&gt; {
-<span class="cstat-no" title="statement not covered" >            setCustomBody(null);</span>
-<span class="cstat-no" title="statement not covered" >            setIsVisible(false);</span>
-        });
-    };
+  const closeModal = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    Animated.timing(slideAnim, {</span>
+      toValue: 300,
+      duration: 300,
+      useNativeDriver: true,
+    }).start(<span class="fstat-no" title="function not covered" >()</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >      setCustomBody(null);</span>
+<span class="cstat-no" title="statement not covered" >      setIsVisible(false);</span>
+    });
+  };
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    return (</span>
-        &lt;ModalContext.Provider value={{ openModal, closeModal }}&gt;
-            {children}
-            &lt;Modal visible={isVisible} transparent animationType="none"&gt;
-                &lt;Pressable style={styles.modalOverlay} onPress={closeModal}&gt;&lt;/Pressable&gt;
-                &lt;Animated.View
-                    style={[
-                        styles.modalContainer,
-                        { transform: [{ translateY: slideAnim }] },
-                    ]}
-                &gt;
-                    {customBody}
-                &lt;/Animated.View&gt;
-            &lt;/Modal&gt;
-        &lt;/ModalContext.Provider&gt;
-    );
+<span class="cstat-no" title="statement not covered" >  return (</span>
+    &lt;ModalContext.Provider value={{ openModal, closeModal }}&gt;
+      {children}
+      &lt;Modal visible={isVisible} transparent animationType="none"&gt;
+        &lt;Pressable style={styles.modalOverlay} onPress={closeModal}&gt;&lt;/Pressable&gt;
+        &lt;Animated.View
+          style={[
+            styles.modalContainer,
+            { transform: [{ translateY: slideAnim }] },
+          ]}
+        &gt;
+          {customBody}
+        &lt;/Animated.View&gt;
+      &lt;/Modal&gt;
+    &lt;/ModalContext.Provider&gt;
+  );
 };
 &nbsp;
 const styles = StyleSheet.create({
-    modalOverlay: {
-        flex: 1,
-        backgroundColor: "rgba(0, 0, 0, 0.5)",
-    },
-    modalContainer: {
-        position: "absolute",
-        bottom: 0,
-        width: "100%",
-        alignSelf: "center",
-        backgroundColor: COLORS.white,
-        borderTopRightRadius: SPACING["4xl"],
-        borderTopLeftRadius: SPACING["4xl"],
-        paddingHorizontal: SPACING.xl,
-        paddingTop: SPACING["3xl"],
-        paddingBottom: SPACING["5xl"],
-        zIndex: 99,
-    },
-    closeButton: {
-        marginTop: SPACING.md,
-        alignSelf: "center",
-        backgroundColor: COLORS.black,
-        paddingVertical: SPACING.md,
-        paddingHorizontal: SPACING.md,
-        borderRadius: 10,
-        width: "100%",
-        justifyContent: "center",
-        alignItems: "center",
-    },
-    closeButtonText: {
-        color: COLORS.white,
-        ...TYPOGRAPHY.body.large.semiBold,
-    },
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+  },
+  modalContainer: {
+    position: "absolute",
+    bottom: 0,
+    width: "100%",
+    alignSelf: "center",
+    backgroundColor: COLORS.white,
+    borderTopRightRadius: SPACING["4xl"],
+    borderTopLeftRadius: SPACING["4xl"],
+    paddingHorizontal: SPACING.xl,
+    paddingTop: SPACING["3xl"],
+    paddingBottom: SPACING["5xl"],
+    zIndex: 99,
+  },
+  closeButton: {
+    marginTop: SPACING.md,
+    alignSelf: "center",
+    backgroundColor: COLORS.black,
+    paddingVertical: SPACING.md,
+    paddingHorizontal: SPACING.md,
+    borderRadius: 10,
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  closeButtonText: {
+    color: COLORS.white,
+    ...TYPOGRAPHY.body.large.semiBold,
+  },
 });
 &nbsp;</pre></td></tr></table></pre>
 
@@ -388,7 +385,7 @@ const styles = StyleSheet.create({
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-11-22T02:42:26.903Z
+                at 2024-11-23T00:35:44.703Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

@@ -32,6 +32,22 @@ type SortableItem<
 
 /**
  * Custom hook to sort items by distance from the user's current location.
+ * 
+ * The items are sorted from closest to farthest based on the distance from the user's location.
+ * 
+ * #### Usage
+ * ```tsx
+ * import useLocation from "@/hooks/useLocation";
+ * import { pavillonCoordinates, type PavillonCoordinate } from "@/constants/Coordinates";
+
+ * const [location, getCurrentLocation] = useLocation();
+ * const sortedPavillons = useSortedItemsByDistance<
+    PavillonCoordinate,
+    "lat",
+    "lng",
+    "pavillon"
+  >(location, pavillonCoordinates, "lat", "lng", "pavillon");
+ * ```
  *
  * @template T - The item type.
  * @template KLat - The key representing latitude in T.
@@ -58,6 +74,8 @@ export default function useSortedItemsByDistance<
   lngKey: KLng,
   nameKey: KName
 ): string[] {
+
+  // State to store the sorted item names.
   const [sortedItemNames, setSortedItemNames] = useState<string[]>([]);
 
   useEffect(() => {
@@ -85,6 +103,8 @@ export default function useSortedItemsByDistance<
       // Extract the name property from each sorted item
       const sortedNames = sorted.map((item) => item[nameKey]);
       setSortedItemNames(sortedNames);
+
+      // FIXME: Remove this log after testing.
       console.warn("Sorted Items: ", sortedNames);
     } else {
       setSortedItemNames([]);

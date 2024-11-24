@@ -1,40 +1,58 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Redirect } from "expo-router";
-import {
-  View,
-  StyleSheet,
-  Image,
-  Text,
-  AppStateStatus,
-  AppState,
-} from "react-native";
+import { Star, Vegan } from "lucide-react-native";
+import { View, StyleSheet, Image } from "react-native";
 
-import * as Location from "expo-location";
-import axios from "axios";
+import useLocation from "@/hooks/useLocation";
+import useOnForegroundBack from "@/hooks/useOnForegroundBack";
+import useSortedItemsByDistance from "@/hooks/useSortedItemsByDistance";
 
 import SPACING from "@/constants/Spacing";
-import { Star, Vegan } from "lucide-react-native";
+import { pavillonCoordinates, type PavillonCoordinate } from "@/constants/Coordinates";
 
 import Tooltip from "@/components/common/Tooltip";
 import Search from "@/components/common/Inputs/Search";
 import CafeCard from "@/components/common/Cards/CafeCard";
+import SelectLocalisation from "@/components/common/SelectLocalisation";
+
 import { useModal } from "@/components/layouts/GlobalModal";
 import ScrollableLayout from "@/components/layouts/ScrollableLayout";
 import FilterModalLayout from "@/components/layouts/FilterModalLayout";
-import SelectLocalisation from "@/components/common/SelectLocalisation";
 import CardScrollableLayout from "@/components/layouts/CardScrollableLayout";
-import { get } from "react-native/Libraries/TurboModule/TurboModuleRegistry";
-import useLocation from "@/hooks/useLocation";
-import useOnForegroundBack from "@/hooks/useOnForegroundBack";
-import useSortedItemsByDistance from "@/hooks/useSortedItemsByDistance";
-import {
-  pavillonCoordinates,
-  type PavillonCoordinate,
-} from "@/constants/Coordinates";
 
+/**
+ * Home screen of the app. It allows the user to search for cafes, filter them,
+ * and view them. The screen also displays quick search options and cafe cards
+ * by categories. It also gets the user's current location. Based on the user's
+ * location, it predicts the closests pavillons to the user. This will help to
+ * show in which pavillon the user is located.
+ *
+ * ### For later implementation:
+ * - Home screen should also be able to predict the closest cafes to the user
+ * based on he's location.
+ *
+ * @auth User must be authenticated.
+ *
+ * @hook
+ * - `useLocation`: Manages the user's location state.
+ * - `useOnForegroundBack`: Executes a callback when the app comes to the foreground.
+ * - `useSortedItemsByDistance`: Sorts items based on their distance from the user's location.
+ * - `useModal`: Provides modal context for opening and closing modals.
+ *
+ * @section
+ * - Location and Search: Allows the user to select a location and perform a search with optional filters.
+ * - Quick Search Section: Displays tooltips for quick access to different categories.
+ * - Horizontal Cafe Cards By Categories: Shows cafe cards categorized by trends, proximity, and promotions.
+ * - All Cafes Cards: Lists all available cafes.
+ */
 export default function HomeScreen() {
+  // Get the user's current location
   const [location, setLocation, getCurrentLocation] = useLocation();
+
+  // Execute a callback when the app comes to the foreground
   useOnForegroundBack(getCurrentLocation);
+
+  // Sort pavillons by distance from the user's location
   const sortedPavillons = useSortedItemsByDistance<
     PavillonCoordinate,
     "lat",
@@ -42,17 +60,26 @@ export default function HomeScreen() {
     "pavillon"
   >(location, pavillonCoordinates, "lat", "lng", "pavillon");
 
+  // Get the modal context for opening and closing modals.
   const modalContext = useModal();
+
+  // Get the open and close modal functions from the modal context.
   const openModal = modalContext ? modalContext.openModal : () => {};
   const closeModal = modalContext ? modalContext.closeModal : () => {};
 
+  // Mock implementation of user authentication check.
+  //FIXME: replace with actual authentication logic.
   const isUserAuthenticated = true;
   if (!isUserAuthenticated) return <Redirect href="/first-onboarding" />;
 
+  // Mock implementation of search and filter functions.
+  // FIXME: Implement actual search and filter functions.
   function handleSearch(text: string): void {
     console.warn("Search `Search` function not implemented.");
   }
 
+  // Mock implementation of search and filter functions.
+  // FIXME: Implement actual search and filter functions.
   function handleFilter(): void {
     console.warn("Search `Filter` function not implemented.");
     openModal(
@@ -67,18 +94,18 @@ export default function HomeScreen() {
   return (
     <ScrollableLayout>
       <>
+        {/* User Location and Search */}
         <View style={styles.locationAndSearchContainer}>
-          <SelectLocalisation
-            currentLocalisation="Pavillon André Aisenstadt"
-            style={styles.selectLocalisationContainer}
-          />
+          <SelectLocalisation currentLocalisation="Pavillon André Aisenstadt" />
           <Search onSearch={handleSearch} onFilter={handleFilter} />
         </View>
+
+        {/* Announcement Image */}
         <Image
-          source={require("@/assets/images/placeholder/imagexl.png")}
-          style={styles.announcementImage}
           width={361}
           height={210}
+          style={styles.announcementImage}
+          source={require("@/assets/images/placeholder/imagexl.png")}
         />
 
         {/* Quick Search Section with Tooltips */}
@@ -347,29 +374,26 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
-  selectLocalisationContainer: {
-    marginTop: 0,
-  },
   locationAndSearchContainer: {
-    marginTop: SPACING["md"],
-    paddingHorizontal: SPACING["md"],
+    gap: SPACING["xs"],
     alignItems: "center",
     justifyContent: "center",
-    gap: SPACING["xs"],
+    marginTop: SPACING["md"],
+    paddingHorizontal: SPACING["md"],
   },
   announcementImage: {
     marginTop: SPACING["xl"],
-    marginHorizontal: SPACING["md"],
     borderRadius: SPACING["sm"],
+    marginHorizontal: SPACING["md"],
   },
   tooltipSearch: {
     marginTop: SPACING["md"],
-    paddingHorizontal: SPACING["md"],
     paddingVertical: SPACING["sm"],
+    paddingHorizontal: SPACING["md"],
   },
   tooltipSearchContainer: {
-    flexDirection: "row",
     gap: SPACING["sm"],
+    flexDirection: "row",
     paddingRight: SPACING["md"],
   },
 });

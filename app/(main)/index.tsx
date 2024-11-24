@@ -47,7 +47,7 @@ import CardScrollableLayout from "@/components/layouts/CardScrollableLayout";
  */
 export default function HomeScreen() {
   // Get the user's current location
-  const [location, setLocation, getCurrentLocation] = useLocation();
+  const [location, getCurrentLocation] = useLocation();
 
   // Execute a callback when the app comes to the foreground
   useOnForegroundBack(getCurrentLocation);

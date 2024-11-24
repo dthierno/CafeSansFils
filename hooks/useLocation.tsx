@@ -3,38 +3,62 @@ import * as Location from "expo-location";
 
 type LocationType = Location.LocationObject | null;
 
-
 /**
  * Hook to get the current location of the device.
- * 
+ *
  * Note: This hook runs only once when the component first mounts.
  * It does not run again when the user comes back to the app.
  * For that, use `useOnForegroundBack` hook.
- * 
- * @returns [`location`, `setLocation`, `getCurrentLocation`]
- * 
+ *
+ * #### Usage
+ * ```tsx
+ * const [location, getCurrentLocation] = useLocation();
+ * ```
+ *
+ * @returns [`location`, `getCurrentLocation`]
+ *
  * `location`: The current location of the device.
- * 
- * `setLocation`: Function to set the location.
- * 
+ *
  * `getCurrentLocation`: Function to get the current location of the device.
- * 
+ * You can pass `true` to get the location object as a return value.
+ *
  */
 export default function useLocation() {
+  // State to store the current location
   const [location, setLocation] = useState<LocationType>(null);
 
-  async function getCurrentLocation() {
+  /**
+   * Function to get the current location of the device.
+   *
+   * @param returnLocation - Pass `true` to get the location object as a return value.
+   *
+   * @returns The current location object.
+   */
+  async function getCurrentLocation(returnLocation: boolean = false) {
+
+    // Request permission to access the location
     let { status } = await Location.requestForegroundPermissionsAsync();
 
+    // If permission is denied, log a message and return. 
+    // FIXME: In production, you can show an error message to the user.
     if (status !== "granted") {
       console.info("Permission to access location was denied");
       return;
     }
 
+    // Get the current location of the device
     let position = await Location.getCurrentPositionAsync({});
-
     setLocation(position);
-    console.log("Current Location: ", position.coords.longitude, position.coords.latitude);
+
+    // FIXME: Remove this log after testing.
+    console.log(
+      "Current Location: ",
+      position.coords.longitude,
+      position.coords.latitude
+    );
+
+    // Return the location object if `returnLocation` is true
+    if (returnLocation) return position;
   }
 
   useEffect(() => {
@@ -42,5 +66,5 @@ export default function useLocation() {
     getCurrentLocation();
   }, []);
 
-    return [location, setLocation, getCurrentLocation] as const;
+  return [location, getCurrentLocation] as const;
 }

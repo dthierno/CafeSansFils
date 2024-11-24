@@ -33,8 +33,12 @@ export default function OnboardingLayout({
     <View>
       <OnboardingStatusBar id={id} />
       <Text>OnboardingLayout</Text>
-      <Button>Suivant</Button>
-      <Button>Sauter</Button>
+      <Button onPress={function (): void {
+        throw new Error('Function not implemented.');
+      } }>Suivant</Button>
+      <Button onPress={function (): void {
+        throw new Error('Function not implemented.');
+      } }>Sauter</Button>
     </View>
   )
 }

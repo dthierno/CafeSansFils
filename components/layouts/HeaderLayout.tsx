@@ -1,4 +1,4 @@
-import { View, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import SPACING from "@/constants/Spacing";
@@ -7,12 +7,21 @@ import COLORS from "@/constants/Colors";
 import AccountInfo from "@/components/common/Auth/AccountInfo";
 import IconButton from "@/components/common/Buttons/IconButton";
 
+// FIXME: Replace with actual user data. This is just a placeholder.
 export const user = {
   fullName: "Darlene Robertson",
   profilePicture: require("../../assets/images/placeholder/ProfilePicture.png"),
 };
 
-export default function HeaderLayout() {
+type HeaderLayoutProps = {
+  fullName?: string;
+  profilePicture?: any;
+};
+
+/**
+ * HeaderLayout component that renders a header layout with account info and icon button.
+ */
+export default function HeaderLayout({fullName, profilePicture}: HeaderLayoutProps) {
   return (
     <SafeAreaView style={styles.headerContainer} testID="header-container">
       <AccountInfo
@@ -26,14 +35,14 @@ export default function HeaderLayout() {
 
 const styles = StyleSheet.create({
   headerContainer: {
-    paddingHorizontal: SPACING.md,
-    paddingBottom: -SPACING.lg,
-    paddingTop: SPACING.xs, 
-    flexDirection: "row",
-    justifyContent: "space-between",
     alignItems: "center",
+    flexDirection: "row",
     borderBottomWidth: 1,
-    borderBottomColor: COLORS.lightGray,
+    paddingTop: SPACING.xs, 
+    paddingBottom: -SPACING.lg,
+    paddingHorizontal: SPACING.md,
     backgroundColor: COLORS.white,
+    justifyContent: "space-between",
+    borderBottomColor: COLORS.lightGray,
   },
 });

@@ -4,6 +4,16 @@ export interface PavillonCoordinate {
   lng: number;
 }
 
+/**
+ * An array of coordinates for various pavilions.
+ * Each object in the array represents a pavilion with its name and geographical coordinates (latitude and longitude).
+ * 
+ * @constant {PavillonCoordinate[]} pavillonCoordinates
+ * @type {Array}
+ * @property {string} pavillon - The name of the pavilion.
+ * @property {number} lat - The latitude coordinate of the pavilion.
+ * @property {number} lng - The longitude coordinate of the pavilion.
+ */
 export const pavillonCoordinates: PavillonCoordinate[] = [
     {
       pavillon: "Pavillon Jean-Coutu",

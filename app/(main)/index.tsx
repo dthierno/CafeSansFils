@@ -26,26 +26,21 @@ import CardScrollableLayout from "@/components/layouts/CardScrollableLayout";
 import { get } from "react-native/Libraries/TurboModule/TurboModuleRegistry";
 import useLocation from "@/hooks/useLocation";
 import useOnForegroundBack from "@/hooks/useOnForegroundBack";
-import useSortedPavillons from "@/hooks/useSortedPavillons";
+import useSortedItemsByDistance from "@/hooks/useSortedItemsByDistance";
+import {
+  pavillonCoordinates,
+  type PavillonCoordinate,
+} from "@/constants/Coordinates";
 
 export default function HomeScreen() {
-  const [pavillons, setPavillons] = useState([
-    "Pavillon Roger-Gaudry",
-    "Pavillon Jean-Coutu",
-    "Pavillon André-Aisenstadt",
-    "Pavillon Claire-McNicoll",
-    "Pavillon Lionel-Groulx",
-    "Pavillon Marie-Victorin",
-    "Pavillon Jean-Brillant",
-  ]);
-
-
   const [location, setLocation, getCurrentLocation] = useLocation();
   useOnForegroundBack(getCurrentLocation);
-  const sortedPavillons = useSortedPavillons(location);
-
-
-  
+  const sortedPavillons = useSortedItemsByDistance<
+    PavillonCoordinate,
+    "lat",
+    "lng",
+    "pavillon"
+  >(location, pavillonCoordinates, "lat", "lng", "pavillon");
 
   const modalContext = useModal();
   const openModal = modalContext ? modalContext.openModal : () => {};

@@ -34,7 +34,7 @@ export default function useLocation() {
     let position = await Location.getCurrentPositionAsync({});
 
     setLocation(position);
-    console.log("Current Location: ", position);
+    console.log("Current Location: ", position.coords.longitude, position.coords.latitude);
   }
 
   useEffect(() => {

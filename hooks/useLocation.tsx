@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import * as Location from "expo-location";
 
 type LocationType = Location.LocationObject | null;
 
 /**
- * Hook to get the current location of the device.
+ * Hook to get the current location of the device when the 
+ * user first opens the app after it has been closed.
  *
  * Note: This hook runs only once when the component first mounts.
- * It does not run again when the user comes back to the app.
- * For that, use `useOnForegroundBack` hook.
+ * It does not run again when the user comes back to the app after
+ * it has been in the background. For that, you should use the
+ * `useOnForegroundBack` hook.
  *
  * #### Usage
  * ```tsx

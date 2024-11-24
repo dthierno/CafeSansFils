@@ -3,7 +3,6 @@ import React, {
   createContext,
   useContext,
   useRef,
-  useEffect,
 } from "react";
 import { Modal, StyleSheet, Pressable, Animated } from "react-native";
 
@@ -11,7 +10,6 @@ import COLORS from "@/constants/Colors";
 import SPACING from "@/constants/Spacing";
 import TYPOGRAPHY from "@/constants/Typography";
 
-// Create a context to manage the modal's visibility and content
 interface ModalContextType {
   openModal: (body: React.ReactNode) => void;
   closeModal: () => void;
@@ -28,7 +26,7 @@ export const GlobalModalProvider = ({
 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [customBody, setCustomBody] = useState<React.ReactNode>(null);
-  const slideAnim = useRef(new Animated.Value(300)).current; // Initial position off-screen
+  const slideAnim = useRef(new Animated.Value(300)).current;
 
   const openModal = (body: React.ReactNode) => {
     setCustomBody(body);

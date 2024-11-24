@@ -1,6 +1,6 @@
 import React from "react";
 import { View, TextInput, StyleSheet, TouchableOpacity } from "react-native";
-import { Search, Sliders, SlidersHorizontal } from "lucide-react-native";
+import { Search, SlidersHorizontal } from "lucide-react-native";
 
 import COLORS from "@/constants/Colors";
 import SPACING from "@/constants/Spacing";

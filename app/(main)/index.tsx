@@ -1,5 +1,6 @@
 import React from "react";
 import { Redirect } from "expo-router";
+import * as Location from "expo-location";
 import { Star, Vegan } from "lucide-react-native";
 import { View, StyleSheet, Image } from "react-native";
 
@@ -8,7 +9,10 @@ import useOnForegroundBack from "@/hooks/useOnForegroundBack";
 import useSortedItemsByDistance from "@/hooks/useSortedItemsByDistance";
 
 import SPACING from "@/constants/Spacing";
-import { pavillonCoordinates, type PavillonCoordinate } from "@/constants/Coordinates";
+import {
+  pavillonCoordinates,
+  type PavillonCoordinate,
+} from "@/constants/Coordinates";
 
 import Tooltip from "@/components/common/Tooltip";
 import Search from "@/components/common/Inputs/Search";
@@ -87,7 +91,7 @@ export default function HomeScreen() {
         title="Filtrer par"
         handleApplyFilter={() => closeModal()}
         handleResetFilter={() => closeModal()}
-      />
+      ></FilterModalLayout>
     );
   }
 
@@ -96,7 +100,10 @@ export default function HomeScreen() {
       <>
         {/* User Location and Search */}
         <View style={styles.locationAndSearchContainer}>
-          <SelectLocalisation currentLocalisation="Pavillon André Aisenstadt" />
+          <SelectLocalisation
+            currentLocalisation={sortedPavillons[0]}
+            location={location as Location.LocationObject}
+          />
           <Search onSearch={handleSearch} onFilter={handleFilter} />
         </View>
 

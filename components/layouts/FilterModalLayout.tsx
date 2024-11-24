@@ -34,7 +34,7 @@ export default function InfoModalLayout({
   return (
     <>
       <Text style={styles.title}>{title}</Text>
-      <View>{children}</View>
+      <>{children}</>
       <FilterButtons
         handleApplyFilter={handleApplyFilter}
         handleResetFilter={handleResetFilter}

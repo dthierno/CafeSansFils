@@ -1,5 +1,6 @@
 import { View, Text, TextInput, StyleSheet } from 'react-native'
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 import { 
 	ShoppingBasket,
@@ -12,10 +13,49 @@ import {
 // Constants
 import TYPOGRAPHY from '@/constants/Typography';
 import COLORS from '@/constants/Colors';
-import SPACING from '@/constants/Spacing'; 
+import SPACING from '@/constants/Spacing';
+
 
 export default function SearchBar() {
-    const [text, setText] = useState('');  
+    const [text, setText] = useState('');
+    const [data, setData] = useState<string[]>([]);
+    const [error, setError] = useState<string | null>(null);
+    const [search, setSearch] = useState('');
+    
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get("https://cafesansfil-api-r0kj.onrender.com/api/cafes");
+                const names = response.data.map((cafe: { name: string }) => cafe.name);
+                setData(names)
+            } catch (err: unknown) {
+                if (axios.isAxiosError(err)) {
+                    setError(err.message); // Handle Axios errors
+                } else {
+                    setError("An unknown error occurred"); // Generic error message
+                }
+            }
+        };
+
+        fetchData();
+    }, []);
+
+    const findCafe = () => {
+ 
+        const lowerCaseSearch = text.toLowerCase();
+
+        const isMatch = data.some((cafe) => cafe.toLowerCase().includes(lowerCaseSearch));
+        const filteredCafes = data.filter((cafe) => cafe.toLowerCase().includes(lowerCaseSearch));
+
+         if(isMatch){
+            const match = filteredCafes.join(`,`)
+            setSearch(match);
+         }else{
+            setSearch("No match found");
+         }
+         
+      };
+
   return (
     <View style={styles.container}>
         <View style={styles.locationContainer}>
@@ -29,6 +69,7 @@ export default function SearchBar() {
                 placeholder="Rechercher les cafés, les plats"
                 value={text}
                 onChangeText={setText}
+                onSubmitEditing={findCafe}
                 style={styles.textInput}
                 placeholderTextColor={COLORS.subtuleDark}
                 maxLength={30}
@@ -36,6 +77,7 @@ export default function SearchBar() {
             />
             <SlidersHorizontal style={styles.slidersIcon} strokeWidth={3} size={20}/>
         </View>
+        <Text>Search Results: {search}</Text>
     
     </View>
 
@@ -88,6 +130,9 @@ const styles = StyleSheet.create({
     textInput:{
         ...TYPOGRAPHY.component.homeSearchText,
         color: COLORS.subtuleDark,
+        padding:10,
+        minWidth: "60%"
+
     },
     textLocation:{
        ...TYPOGRAPHY.body.normal.semiBold,

@@ -6,6 +6,7 @@ import SPACING from "@/constants/Spacing";
 import TYPOGRAPHY from "@/constants/Typography";
 import COLORS from "@/constants/Colors";
 import ScrollableLayout from "@/components/layouts/ScrollableLayout";
+import SearchBar from "@/components/common/SearchBar";
 
 /**
  * `HomeScreen` component that conditionally renders content based on user authentication status.
@@ -41,6 +42,7 @@ export default function HomeScreen() {
                     <Link href="/cafe/CafeToreEtFraction" style={[TYPOGRAPHY.body.large.medium, {marginTop: SPACING.xs}]}>
                         {">"} Go to the individual coffee screen
                     </Link>
+                    <SearchBar/>
             </SafeAreaView>
         </ScrollableLayout>
     );

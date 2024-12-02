@@ -1,8 +1,9 @@
-import React from "react";
-import { Redirect } from "expo-router";
+import React, { useEffect } from "react";
+import { Redirect, router } from "expo-router";
 import * as Location from "expo-location";
 import { Star, Vegan } from "lucide-react-native";
 import { View, StyleSheet, Image } from "react-native";
+
 
 import useLocation from "@/hooks/useLocation";
 import useOnForegroundBack from "@/hooks/useOnForegroundBack";
@@ -73,7 +74,7 @@ export default function HomeScreen() {
 
   // Mock implementation of user authentication check.
   //FIXME: replace with actual authentication logic.
-  const isUserAuthenticated = true;
+  const isUserAuthenticated = false;
   if (!isUserAuthenticated) return <Redirect href="/first-onboarding" />;
 
   // Mock implementation of search and filter functions.
@@ -93,7 +94,7 @@ export default function HomeScreen() {
         handleResetFilter={() => closeModal()}
       ></FilterModalLayout>
     );
-  }
+}
 
   return (
     <ScrollableLayout>

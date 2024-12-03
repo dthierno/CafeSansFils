@@ -2,19 +2,47 @@ import Button from "@/components/common/Buttons/Button";
 import SocialButton from "@/components/common/Buttons/SocialButton";
 import COLORS from "@/constants/Colors";
 import TYPOGRAPHY from "@/constants/Typography";
-import { Link, router } from "expo-router";
+import { Link, router, useRouter } from "expo-router";
 import React from "react";
 import TextInput from "@/components/common/Inputs/TextInput";
 import { View, Text, StyleSheet, Image } from "react-native";
+import { useSignIn } from "@clerk/clerk-expo";
 
 export default function SignInScreen() {
+  const { signIn, setActive, isLoaded } = useSignIn()
+  const router = useRouter()
+
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
-  const handleConnexion = () => router.navigate("/sign-up");
+  const handleConnexion = React.useCallback(async () => {
+    if (!isLoaded) {
+      return
+    }
+
+    try {
+      const signInAttempt = await signIn.create({
+        identifier: email,
+        password,
+      })
+
+      if (signInAttempt.status === 'complete') {
+        await setActive({ session: signInAttempt.createdSessionId })
+        router.replace('/')
+      } else {
+        // See https://clerk.com/docs/custom-flows/error-handling
+        // for more info on error handling
+        console.error(JSON.stringify(signInAttempt, null, 2))
+      }
+    } catch (err: any) {
+      console.error(JSON.stringify(err, null, 2))
+    }
+  }, [isLoaded, email, password])
+
+
   const handleEmail = (email: string) => setEmail(email);
   const handlePassword = (password: string) => setPassword(password);
-  
+
   return (
     <View style={styles.signInContainer}>
       <View style={styles.container}>

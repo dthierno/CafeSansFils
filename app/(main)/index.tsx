@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Redirect, router } from "expo-router";
 import * as Location from "expo-location";
 import { Star, Vegan } from "lucide-react-native";
-import { View, StyleSheet, Image } from "react-native";
+import { View, StyleSheet, Image, Text } from "react-native";
 
 
 import useLocation from "@/hooks/useLocation";
@@ -24,6 +24,7 @@ import { useModal } from "@/components/layouts/GlobalModal";
 import ScrollableLayout from "@/components/layouts/ScrollableLayout";
 import FilterModalLayout from "@/components/layouts/FilterModalLayout";
 import CardScrollableLayout from "@/components/layouts/CardScrollableLayout";
+import { useUser } from "@clerk/clerk-expo";
 
 /**
  * Home screen of the app. It allows the user to search for cafes, filter them,
@@ -74,8 +75,10 @@ export default function HomeScreen() {
 
   // Mock implementation of user authentication check.
   //FIXME: replace with actual authentication logic.
-  const isUserAuthenticated = false;
-  if (!isUserAuthenticated) return <Redirect href="/first-onboarding" />;
+  // const { isSignedIn } = useAuth();
+  // if (!isSignedIn) return Redirect({ href: "/first-onboarding" });
+  // const isUserAuthenticated = false;
+  // if (!isUserAuthenticated) return <Redirect href="/first-onboarding" />;
 
   // Mock implementation of search and filter functions.
   // FIXME: Implement actual search and filter functions.
@@ -94,7 +97,7 @@ export default function HomeScreen() {
         handleResetFilter={() => closeModal()}
       ></FilterModalLayout>
     );
-}
+  }
 
   return (
     <ScrollableLayout>

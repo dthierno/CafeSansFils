@@ -1,50 +1,35 @@
 import Button from "@/components/common/Buttons/Button";
+import SocialButton from "@/components/common/Buttons/SocialButton";
 import COLORS from "@/constants/Colors";
 import TYPOGRAPHY from "@/constants/Typography";
 import { Link, router } from "expo-router";
 import React from "react";
-import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity } from "react-native";
+import TextInput from "@/components/common/Inputs/TextInput";
+import { View, Text, StyleSheet, Image } from "react-native";
 
 export default function SignInScreen() {
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+
+  const handleConnexion = () => router.navigate("/sign-up");
+  const handleEmail = (email: string) => setEmail(email);
+  const handlePassword = (password: string) => setPassword(password);
+  
   return (
     <View style={styles.signInContainer}>
-      <View style={{
-        marginVertical: 28,
-      }}>
-        <Image
-          source={require("@/assets/images/placeholder/logo.png")}
-          style={styles.logo}
-          ></Image>
+      <View style={styles.container}>
+        <Image source={require("@/assets/images/placeholder/logo.png")} style={styles.logo} />
+
         <Text style={[TYPOGRAPHY.heading.large.bold, styles.heading]}>
           Connectez-vous à votre compte
         </Text>
+
         <View>
-          <View>
-            <Text style={[TYPOGRAPHY.body.normal.base, styles.textInputLabel]}>Adresse électronique</Text>
-            <TextInput
-              style={styles.textInput}
-              placeholder="menum@cadum.ca"
-              placeholderTextColor={COLORS.subtuleDark}
-              returnKeyLabel="next"
-              ></TextInput>
-          </View>
-          <View>
-          <Text style={[TYPOGRAPHY.body.normal.base, styles.textInputLabel]}>Mot de passe</Text>
-            <TextInput
-              style={styles.textInput}
-              placeholder="*******************"
-              placeholderTextColor={COLORS.subtuleDark}
-              returnKeyLabel="next"
-              secureTextEntry={true}
-              ></TextInput>
-          </View>
-          <Link href="/" style={[TYPOGRAPHY.body.normal.semiBold, { alignSelf: "flex-end" }]}>Mot de passe oublié ?</Link>
+          <TextInput label="Adresse électronique" placeholder="menum@cadum.ca" handleOnChangeText={handleEmail}/>
+          <TextInput label="Mot de passe" placeholder="*******************" secureTextEntry helpLinkText="Mot de passe oublié ?" handleOnChangeText={handlePassword} helpLink/>
         </View>
 
-        <Button onPress={() => router.navigate("/sign-up")} style={{
-          marginTop: 24,
-          marginBottom: 28,
-        }}>Se connecter</Button>
+        <Button onPress={handleConnexion} style={styles.mainButton}>Se connecter</Button>
 
         <View style={styles.sectionDivider}>
           <View style={styles.divider}></View>
@@ -52,18 +37,8 @@ export default function SignInScreen() {
           <View style={styles.divider}></View>
         </View>
 
-        <TouchableOpacity style={styles.socialButton}>
-          <View style={styles.socialButtonInnerContainer}>
-            <Image source={require("@/assets/images/onboarding/google.png")} style={{width: 24, height: 24}}></Image>
-            <Text style={[TYPOGRAPHY.body.large.semiBold, { textAlign: "center" }]}>Continuer avec Google</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.socialButton}>
-          <View style={styles.socialButtonInnerContainer}>
-            <Image source={require("@/assets/images/onboarding/facebook.png")} style={{width: 24, height: 24}}></Image>
-            <Text style={[TYPOGRAPHY.body.large.semiBold, { textAlign: "center" }]}>Continuer avec Facebook</Text>
-          </View>
-        </TouchableOpacity>
+        <SocialButton type="google" style={{marginBottom: 16}}/>
+        <SocialButton type="facebook" style={{marginBottom: 16}} />
 
         <View style={styles.otherOptionText}>
           <Text style={TYPOGRAPHY.body.normal.base}>Pas de compte?</Text>
@@ -75,6 +50,13 @@ export default function SignInScreen() {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    marginVertical: 28,
+  },
+  mainButton: {
+    marginTop: 24,
+    marginBottom: 28,
+  },
   otherOptionText: {
     flexDirection: "row",
     alignItems: "center",

@@ -8,11 +8,14 @@ import { Stack } from "expo-router/stack";
 import * as SplashScreen from 'expo-splash-screen'; 
 import COLORS from '@/constants/Colors';
 import { GlobalModalProvider } from '@/components/layouts/GlobalModal';
+import { ClerkProvider, ClerkLoaded } from '@clerk/clerk-expo';
 
 
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
+    const publishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY!;
+
     const [loaded, error] = useFonts({
         'Inter-Black': require("../assets/fonts/Inter/Inter-Black.ttf"),
         'Inter-BlackItalic': require("../assets/fonts/Inter/Inter-BlackItalic.ttf"),
@@ -62,17 +65,25 @@ export default function RootLayout() {
         return null;
     }
 
+    if (!publishableKey) {
+        throw new Error('Add EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY to your .env file')
+    }
+
     return (
-        <GlobalModalProvider>
-            <Stack screenOptions={{ 
-                gestureEnabled: false,
-                animation: "none",
-                contentStyle: { backgroundColor: COLORS.white },
-            }}>
-                <Stack.Screen name='(main)' options={{ headerShown: false }} />
-                <Stack.Screen name='(onboarding)' options={{ headerShown: false}} />
-                <Stack.Screen name='(auth)' options={{ headerShown: false}} />
-            </Stack>
-        </GlobalModalProvider>
+        <ClerkProvider publishableKey={publishableKey}>
+            <ClerkLoaded>
+                <GlobalModalProvider>
+                    <Stack screenOptions={{ 
+                        gestureEnabled: false,
+                        animation: "none",
+                        contentStyle: { backgroundColor: COLORS.white },
+                    }}>
+                        <Stack.Screen name='(main)' options={{ headerShown: false }} />
+                        <Stack.Screen name='(onboarding)' options={{ headerShown: false}} />
+                        <Stack.Screen name='(auth)' options={{ headerShown: false}} />
+                    </Stack>
+                </GlobalModalProvider>
+            </ClerkLoaded>
+        </ClerkProvider>
     )
 }

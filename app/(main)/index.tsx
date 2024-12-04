@@ -73,13 +73,6 @@ export default function HomeScreen() {
   const openModal = modalContext ? modalContext.openModal : () => {};
   const closeModal = modalContext ? modalContext.closeModal : () => {};
 
-  // Mock implementation of user authentication check.
-  //FIXME: replace with actual authentication logic.
-  // const { isSignedIn } = useAuth();
-  // if (!isSignedIn) return Redirect({ href: "/first-onboarding" });
-  // const isUserAuthenticated = false;
-  // if (!isUserAuthenticated) return <Redirect href="/first-onboarding" />;
-
   // Mock implementation of search and filter functions.
   // FIXME: Implement actual search and filter functions.
   function handleSearch(text: string): void {

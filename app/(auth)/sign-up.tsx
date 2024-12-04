@@ -1,59 +1,129 @@
 import Button from "@/components/common/Buttons/Button";
+import SocialButton from "@/components/common/Buttons/SocialButton";
 import COLORS from "@/constants/Colors";
 import TYPOGRAPHY from "@/constants/Typography";
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import React from "react";
-import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity } from "react-native";
+import TextInput from "@/components/common/Inputs/TextInput";
+import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import { useSignUp } from "@clerk/clerk-expo";
+
+type FullNameType = {
+  firstName: string;
+  lastName: string;
+}
 
 export default function SignUpScreen() {
+  const { isLoaded, signUp, setActive } = useSignUp();
+  const router = useRouter();
+
+  const [code, setCode] = React.useState('');
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [fullName, setFullName] = React.useState<FullNameType|undefined>();
+  const [pendingVerification, setPendingVerification] = React.useState(false);
+
+  function handleEmail(text: string) {
+    setEmail(text); 
+  }
+
+  function handlePassword(text: string) {
+    setPassword(text);
+  }
+
+  async function handleCreateAccount() {
+    if (!isLoaded) {
+      return
+    }
+
+    try {
+      await signUp.create({
+        emailAddress: email,
+        password,
+        firstName: fullName?.firstName,
+        lastName: fullName?.lastName,
+      })
+
+      await signUp.prepareEmailAddressVerification({ strategy: 'email_code' })
+      setPendingVerification(true)
+
+      // if (signUpAttempt.status === 'complete') {
+      //   await setActive({ session: signUpAttempt.createdSessionId })
+      //   router.replace('/')
+      // }
+    } catch (err: any) {
+      // See https://clerk.com/docs/custom-flows/error-handling
+      // for more info on error handling
+      console.error(JSON.stringify(err, null, 2))
+    }
+  }
+
+  function handleFullName(text: string): void {
+    const decomposedName = text.split(" ");
+    if (decomposedName.length < 2) {
+      throw new Error("Please enter your full name");
+    }
+
+    const lastName = decomposedName.pop() as string;
+    const firstName = decomposedName.join(" ");
+
+    setFullName({ firstName, lastName });
+  }
+
+  const onPressVerify = async () => {
+    if (!isLoaded) {
+      return
+    }
+
+    try {
+      const completeSignUp = await signUp.attemptEmailAddressVerification({
+        code,
+      })
+
+      if (completeSignUp.status === 'complete') {
+        await setActive({ session: completeSignUp.createdSessionId })
+        router.replace('/')
+      } else {
+        console.error(JSON.stringify(completeSignUp, null, 2))
+      }
+    } catch (err: any) {
+      // See https://clerk.com/docs/custom-flows/error-handling
+      // for more info on error handling
+      console.error(JSON.stringify(err, null, 2))
+    }
+  }
+
+  if (pendingVerification) {
+    return (
+      <View style={styles.signInContainer}>
+        <View style={styles.container}>
+          <Image source={require("@/assets/images/placeholder/logo.png")} style={styles.logo} />
+          <Text style={[TYPOGRAPHY.heading.large.bold, styles.heading]}>Vérifiez votre email</Text>
+          <Text style={[TYPOGRAPHY.body.large.base, { textAlign: "center", lineHeight: 22, marginTop:-16, marginBottom: 32 }]}>
+            Un code de vérification a été envoyé à votre adresse électronique.
+            Veuillez entrer le code pour vérifier votre compte.  
+          </Text>
+
+          <TextInput label="Code de vérification" placeholder="123456" handleOnChangeText={setCode} />
+          <Button onPress={onPressVerify} style={styles.mainButton}>Vérifier</Button>
+        </View>
+      </View>
+    );
+  }
+
   return (
     <View style={styles.signInContainer}>
-      <View style={{
-        marginVertical: 4,
-      }}>
-        <Image
-          source={require("@/assets/images/placeholder/logo.png")}
-          style={styles.logo}
-          ></Image>
-        <Text style={[TYPOGRAPHY.heading.large.bold, styles.heading]}>
-          Créez un compte
-        </Text>
+      <View style={styles.container}>
+        <Image source={require("@/assets/images/placeholder/logo.png")} style={styles.logo} />
+        <Text style={[TYPOGRAPHY.heading.large.bold, styles.heading]}>Créez un compte</Text>
+
         <View>
-          <View>
-            <Text style={[TYPOGRAPHY.body.normal.base, styles.textInputLabel]}>Nom Complet *</Text>
-            <TextInput
-              style={styles.textInput}
-              placeholder="Darlene Robertson"
-              placeholderTextColor={COLORS.subtuleDark}
-              returnKeyLabel="next"
-              ></TextInput>
-          </View>
-          <View>
-            <Text style={[TYPOGRAPHY.body.normal.base, styles.textInputLabel]}>Adresse électronique *</Text>
-            <TextInput
-              style={styles.textInput}
-              placeholder="menum@cadum.ca"
-              placeholderTextColor={COLORS.subtuleDark}
-              returnKeyLabel="next"
-              ></TextInput>
-          </View>
-          <View>
-          <Text style={[TYPOGRAPHY.body.normal.base, styles.textInputLabel]}>Mot de passe *</Text>
-            <TextInput
-              style={styles.textInput}
-              placeholder="*******************"
-              placeholderTextColor={COLORS.subtuleDark}
-              returnKeyLabel="next"
-              secureTextEntry={true}
-              ></TextInput>
-          </View>
-          <Link href="/" style={[TYPOGRAPHY.body.normal.semiBold, { alignSelf: "flex-end" }]}>Mot de passe oublié ?</Link>
+          <TextInput label="Nom Complet *" placeholder="Darlene Robertson" handleOnChangeText={handleFullName}/>
+          <TextInput label="Adresse électronique *" placeholder="menum@cadum.ca" handleOnChangeText={handleEmail}/>
+          <TextInput label="Mot de passe *" placeholder="*******************" secureTextEntry helpLinkHref="/sign-up" helpLinkText="Mot de passe oublié ?" handleOnChangeText={handlePassword} helpLink/>
         </View>
 
-        <Button onPress={() => {}} style={{
-          marginTop: 24,
-          marginBottom: 28,
-        }}>S'inscrire</Button>
+        <Button onPress={handleCreateAccount} style={styles.mainButton}>S'inscrire</Button>
 
         <View style={styles.sectionDivider}>
           <View style={styles.divider}></View>
@@ -61,22 +131,12 @@ export default function SignUpScreen() {
           <View style={styles.divider}></View>
         </View>
 
-        <TouchableOpacity style={styles.socialButton}>
-          <View style={styles.socialButtonInnerContainer}>
-            <Image source={require("@/assets/images/onboarding/google.png")} style={{width: 24, height: 24}}></Image>
-            <Text style={[TYPOGRAPHY.body.large.semiBold, { textAlign: "center" }]}>Continuer avec Google</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.socialButton}>
-          <View style={styles.socialButtonInnerContainer}>
-            <Image source={require("@/assets/images/onboarding/facebook.png")} style={{width: 24, height: 24}}></Image>
-            <Text style={[TYPOGRAPHY.body.large.semiBold, { textAlign: "center" }]}>Continuer avec Facebook</Text>
-          </View>
-        </TouchableOpacity>
+        <SocialButton type="google" style={{marginBottom: 16}}/>
+        <SocialButton type="facebook" style={{marginBottom: 16}} />
 
         <View style={styles.otherOptionText}>
-          <Text style={TYPOGRAPHY.body.normal.base}>Pas de compte?</Text>
-          <Link href={"/sign-up"} style={TYPOGRAPHY.body.normal.semiBold}>Créez un compte</Link>
+          <Text style={TYPOGRAPHY.body.normal.base}>Déjà un compte?</Text>
+          <Link href={"/sign-in"} style={TYPOGRAPHY.body.normal.semiBold}>Connectez-vous</Link>
         </View>
       </View>
     </View>
@@ -84,6 +144,13 @@ export default function SignUpScreen() {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    marginVertical: 4,
+  },
+  mainButton: {
+    marginTop: 24,
+    marginBottom: 28,
+  },
   otherOptionText: {
     flexDirection: "row",
     alignItems: "center",

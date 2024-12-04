@@ -54,7 +54,7 @@ export default function SignInScreen() {
 
         <View>
           <TextInput label="Adresse électronique" placeholder="menum@cadum.ca" handleOnChangeText={handleEmail}/>
-          <TextInput label="Mot de passe" placeholder="*******************" secureTextEntry helpLinkText="Mot de passe oublié ?" handleOnChangeText={handlePassword} helpLink/>
+          <TextInput label="Mot de passe" placeholder="*******************" secureTextEntry helpLinkHref="/sign-up" helpLinkText="Mot de passe oublié ?" handleOnChangeText={handlePassword} helpLink/>
         </View>
 
         <Button onPress={handleConnexion} style={styles.mainButton}>Se connecter</Button>

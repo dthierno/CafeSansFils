@@ -13,7 +13,7 @@ type AccountInfoProps = {
 };
 
 export default function AccountInfo({
-  title = "Bonjour et Bienvenue", // English: "Welcome back", French: ""
+  title = "Bonjour et bienvenue", // English: "Welcome back", French: ""
   profileName,
   profilePicture,
 }: AccountInfoProps) {

@@ -32,6 +32,12 @@ type TooltipProps = {
   /** Whether to change the tooltip color when pressed (default: false) */
   changeColorOnPress?: boolean;
 
+  /** Optional color to apply to the tooltip */
+  color?: string;
+
+  /** Optional text color to apply to the tooltip */
+  textColor?: string;
+
   /** Optional children to display inside the tooltip */
   children?: React.ReactNode;
 
@@ -92,6 +98,8 @@ export default function Tooltip({
   status,
   Icon = status && Circle, // Default to Circle if a status is provided
   showChevron = true,
+  color,
+  textColor,
   changeColorOnPress = false,
   onPress,
 }: TooltipProps): JSX.Element {
@@ -141,6 +149,7 @@ export default function Tooltip({
             ? { backgroundColor: COLORS.black }
             : { backgroundColor: COLORS.lightGray }
           : { backgroundColor: COLORS.lightGray },
+        color && { backgroundColor: color },
       ]}
       activeOpacity={0.7}
       testID="tooltip-container"
@@ -203,6 +212,7 @@ export default function Tooltip({
               : { color: COLORS.black }
             : { color: COLORS.black },
           !showChevron && { marginRight: SPACING.xxs }, // Adjust margin if no chevron
+          textColor && { color: textColor },
         ]}
       >
         {label}

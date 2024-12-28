@@ -18,19 +18,32 @@ import {
   Vegan,
   ThumbsUp,
 } from "lucide-react-native";
+import { useEffect, useRef } from "react";
 import { View, Text, StyleSheet, SafeAreaView, Image, TextInput, KeyboardAvoidingView,
-  Platform, } from "react-native";
+  Platform,
+  ScrollView, } from "react-native";
 
 export default function ArticleScreen() {
   const { id, articleId } = useLocalSearchParams();
   console.log("Caffé Id", id);
   console.log("Article Id", articleId);
+
+  const scrollViewRef = useRef<ScrollView>(null);
+
+  useEffect(() => {
+    scrollViewRef.current?.scrollTo({ x: 0, y: 0, animated: true });
+  }, [articleId]);
+
   return (
     <KeyboardAvoidingView
       style={styles.container}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
-    <ScrollableLayout>
+    <ScrollView
+      ref={scrollViewRef}
+      showsVerticalScrollIndicator={false}
+      showsHorizontalScrollIndicator={false}
+      style={[{ backgroundColor: COLORS.white }]}>
       <View>
         <Image
           style={styles.cafeBackgroundImage}
@@ -213,7 +226,7 @@ export default function ArticleScreen() {
         />
       </CardScrollableLayout>
 
-    </ScrollableLayout>
+    </ScrollView>
     </KeyboardAvoidingView>
   );
 }

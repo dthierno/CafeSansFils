@@ -22,8 +22,9 @@ import { View, Text, StyleSheet, SafeAreaView, Image, TextInput, KeyboardAvoidin
   Platform, } from "react-native";
 
 export default function ArticleScreen() {
-  const { articleId } = useLocalSearchParams();
-  console.log("id", articleId);
+  const { id, articleId } = useLocalSearchParams();
+  console.log("Caffé Id", id);
+  console.log("Article Id", articleId);
   return (
     <KeyboardAvoidingView
       style={styles.container}

@@ -64,7 +64,21 @@ export default function TabLayout() {
           }}
         />
         <Tabs.Screen
+          name="cafe/[id]/index"
+          options={{
+            href: null,
+            headerShown: false,
+          }}
+        />
+        <Tabs.Screen
           name="cafe/article/[articleId]"
+          options={{
+            href: null,
+            headerShown: false,
+          }}
+        />
+        <Tabs.Screen
+          name="cafe/[id]/[articleId]"
           options={{
             href: null,
             headerShown: false,

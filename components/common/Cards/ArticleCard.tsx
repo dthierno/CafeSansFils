@@ -85,7 +85,7 @@ export default function ArticleCard({
   return (
     <View>
       {size === "large" ? (
-        <Pressable onPress={() => router.push(`/cafe/article/${slug}`)}
+        <Pressable onPress={() => router.push(`/cafe/${cafeSlug}/${slug}`)}
           style={{
             flexDirection: "row",
             justifyContent: "space-between",
@@ -145,7 +145,7 @@ export default function ArticleCard({
         </Pressable>
       ) : (
         <Pressable
-          onPress={() => router.push(`/cafe/article/${slug}`)}
+          onPress={() => router.push(`/cafe/${cafeSlug}/${slug}`)}
           style={{ width: cardDimensions[size].width }}
           testID="button"
         >

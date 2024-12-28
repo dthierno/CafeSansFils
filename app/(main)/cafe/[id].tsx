@@ -1,3 +1,4 @@
+import React, { useRef, useEffect } from 'react';
 import IconButton from "@/components/common/Buttons/IconButton";
 import ArticleCard from "@/components/common/Cards/ArticleCard";
 import CafeCard from "@/components/common/Cards/CafeCard";
@@ -26,13 +27,24 @@ import {
   SafeAreaView,
   Image,
   TouchableOpacity,
+  useWindowDimensions,
+  ScrollView,
 } from "react-native";
 
 export default function CafeScreen() {
   const { id } = useLocalSearchParams();
+  const scrollViewRef = useRef<ScrollView>(null);
+
+  useEffect(() => {
+    scrollViewRef.current?.scrollTo({ x: 0, y: 0, animated: true });
+  }, [id]);
 
   return (
-    <ScrollableLayout>
+    <ScrollView
+      ref={scrollViewRef}
+      showsVerticalScrollIndicator={false}
+      showsHorizontalScrollIndicator={false}
+      style={[{ backgroundColor: COLORS.white }]}>
       <View>
         <Image
           style={styles.cafeBackgroundImage}
@@ -472,7 +484,7 @@ export default function CafeScreen() {
           status="open"
         />
       </CardScrollableLayout>
-    </ScrollableLayout>
+    </ScrollView>
   );
 }
 

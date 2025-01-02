@@ -26,7 +26,7 @@ import { View, Text, StyleSheet, SafeAreaView, Image, TextInput, KeyboardAvoidin
 export default function ArticleScreen() {
   const { id, articleId } = useLocalSearchParams();
   console.log("Caffé Id", id);
-  console.log("Article Id", articleId);
+  console.log("Article Id", articleId) ;
 
   const scrollViewRef = useRef<ScrollView>(null);
 
@@ -170,7 +170,7 @@ export default function ArticleScreen() {
         ></TextInput>
         <View style={{ marginBottom: 44, marginTop: 32, flexDirection: "row", alignItems: "center", gap: 32}}>
           <Counter></Counter>
-          <Button onPress={() => {}} style={{ flex: 1, width: "auto" }}>
+          <Button onPress={() => router.push('/(main)/pannier')} style={{ flex: 1, width: "auto" }}>
             Ajouter au panier
           </Button>
         </View>

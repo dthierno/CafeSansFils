@@ -6,9 +6,76 @@ import { Link, router, useRouter } from "expo-router";
 import React from "react";
 import TextInput from "@/components/common/Inputs/TextInput";
 import { View, Text, StyleSheet, Image } from "react-native";
-import { useSignIn } from "@clerk/clerk-expo";
+import { useAuth, useSignIn } from "@clerk/clerk-expo";
+import { useOAuth } from '@clerk/clerk-expo'
+import * as Linking from 'expo-linking'
+import * as WebBrowser from 'expo-web-browser'
+
+export const useWarmUpBrowser = () => {
+  React.useEffect(() => {
+    // Warm up the android browser to improve UX
+    // https://docs.expo.dev/guides/authentication/#improving-user-experience
+    void WebBrowser.warmUpAsync()
+    return () => {
+      void WebBrowser.coolDownAsync()
+    }
+  }, [])
+}
+
+WebBrowser.maybeCompleteAuthSession()
 
 export default function SignInScreen() {
+
+  useWarmUpBrowser();
+  const { startOAuthFlow } = useOAuth({ strategy: 'oauth_google' })
+  const { startOAuthFlow: startFacebookOAuthFlow } = useOAuth({ strategy: 'oauth_facebook' })
+
+  const onPress = React.useCallback(async () => {
+    try {
+      const { createdSessionId, signIn, signUp, setActive } = await startOAuthFlow({
+        redirectUrl: Linking.createURL('/dashboard', { scheme: 'myapp' }),
+      })
+
+      // If sign in was successful, set the active session
+      if (createdSessionId) {
+        await setActive!({ session: createdSessionId })
+        console.log("Session created")
+        router.replace('/')
+        console.log("Navigated")
+      } else {
+        // Use signIn or signUp returned from startOAuthFlow
+        // for next steps, such as MFA (Multi-Factor Authentication)
+      }
+    } catch (err) {
+      // See https://clerk.com/docs/custom-flows/error-handling
+      // for more info on error handling
+      console.error(JSON.stringify(err, null, 2))
+    }
+  }, [])
+
+  const onPress2 = React.useCallback(async () => {
+    try {
+      const { createdSessionId, signIn, signUp, setActive } = await startFacebookOAuthFlow({
+        redirectUrl: Linking.createURL('/dashboard', { scheme: 'myapp' }),
+      })
+
+      // If sign in was successful, set the active session
+      if (createdSessionId) {
+        await setActive!({ session: createdSessionId })
+        console.log("Session created")
+        router.replace('/')
+        console.log("Navigated")
+      } else {
+        // Use signIn or signUp returned from startOAuthFlow
+        // for next steps, such as MFA (Multi-Factor Authentication)
+      }
+    } catch (err) {
+      // See https://clerk.com/docs/custom-flows/error-handling
+      // for more info on error handling
+      console.error(JSON.stringify(err, null, 2))
+    }
+  }, [])
+
   const { signIn, setActive, isLoaded } = useSignIn()
   const router = useRouter()
 
@@ -65,8 +132,8 @@ export default function SignInScreen() {
           <View style={styles.divider}></View>
         </View>
 
-        <SocialButton type="google" style={{marginBottom: 16}}/>
-        <SocialButton type="facebook" style={{marginBottom: 16}} />
+        <SocialButton type="google" style={{marginBottom: 16}} onPress={onPress}/>
+        <SocialButton type="facebook" style={{marginBottom: 16}} onPress={onPress2} />
 
         <View style={styles.otherOptionText}>
           <Text style={TYPOGRAPHY.body.normal.base}>Pas de compte?</Text>

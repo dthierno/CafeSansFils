@@ -9,11 +9,12 @@ import SPACING from "@/constants/Spacing";
 type SocialButtonProps = {
   type?: "google" | "facebook";
   style?: ViewStyle;
+  onPress?: () => void;
 };
 
-export default function SocialButton({ type, style }: SocialButtonProps) {
+export default function SocialButton({ type, style, onPress }: SocialButtonProps) {
   return type === "google" ? (
-    <TouchableOpacity style={[styles.socialButton, style]}>
+    <TouchableOpacity style={[styles.socialButton, style]} onPress={onPress}>
       <View style={styles.socialButtonInnerContainer}>
         <Image
           source={require("@/assets/images/onboarding/google.png")}
@@ -25,7 +26,7 @@ export default function SocialButton({ type, style }: SocialButtonProps) {
       </View>
     </TouchableOpacity>
   ) : (
-    <TouchableOpacity style={[styles.socialButton, style]}>
+    <TouchableOpacity style={[styles.socialButton, style]} onPress={onPress}>
       <View style={styles.socialButtonInnerContainer}>
         <Image
           source={require("@/assets/images/onboarding/facebook.png")}

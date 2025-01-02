@@ -1,5 +1,5 @@
 import { Redirect, Tabs } from "expo-router";
-import { SignedIn, useAuth } from "@clerk/clerk-expo";
+import { SignedIn, useAuth, useOAuth } from "@clerk/clerk-expo";
 import TYPOGRAPHY from "@/constants/Typography";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import HeaderLayout from "@/components/layouts/HeaderLayout";

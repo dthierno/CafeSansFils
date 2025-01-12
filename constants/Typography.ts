@@ -64,8 +64,8 @@ const styles = StyleSheet.create({
   },
 
   homeSearchText: {
-    fontFamily: 'Inter-Regular',
-    fontSize: 14,
+    fontFamily: 'Poppins-Medium',
+    fontSize: 13.5,
   },
 });
 

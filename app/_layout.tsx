@@ -2,7 +2,7 @@ import React from 'react';
 import {useEffect} from 'react';
 
 import { useFonts } from 'expo-font'; 
-import { Slot } from 'expo-router';
+import { Redirect, Slot } from 'expo-router';
 import { Stack } from "expo-router/stack";
 
 import * as SplashScreen from 'expo-splash-screen'; 

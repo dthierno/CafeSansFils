@@ -3,11 +3,11 @@ import { SignedIn, useAuth, useOAuth } from "@clerk/clerk-expo";
 import TYPOGRAPHY from "@/constants/Typography";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import HeaderLayout from "@/components/layouts/HeaderLayout";
-import { Home, Settings, ShoppingBasket } from "lucide-react-native";
+import { Home, Settings, ShoppingBasket, UserRound } from "lucide-react-native";
 
 export default function TabLayout() {
     const { isSignedIn } = useAuth();
-    if (!isSignedIn) return Redirect({ href: "/" });
+    if (!isSignedIn) return Redirect({ href: "/first-onboarding" });
   return (
       <Tabs
         screenOptions={{
@@ -48,11 +48,11 @@ export default function TabLayout() {
           }}
         />
         <Tabs.Screen
-          name="parametre"
+          name="settings/index"
           options={{
-            title: "Settings",
+            title: "Compte",
             headerShown: false,
-            tabBarIcon: ({ color }) => <Settings size={28} color={color} />,
+            tabBarIcon: ({ color }) => <UserRound size={28} color={color} />,
             tabBarLabelStyle: TYPOGRAPHY.body.small.bold,
           }}
         />
@@ -65,6 +65,13 @@ export default function TabLayout() {
         />
         <Tabs.Screen
           name="cafe/[id]/index"
+          options={{
+            href: null,
+            headerShown: false,
+          }}
+        />
+        <Tabs.Screen
+          name="parametre"
           options={{
             href: null,
             headerShown: false,

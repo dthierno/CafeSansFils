@@ -1,7 +1,7 @@
-import { View, Text, StyleSheet, Image, Pressable } from "react-native";
+import { View, Text, StyleSheet, Image, Pressable, Animated } from "react-native";
 import { Circle } from "lucide-react-native";
 import { router } from "expo-router";
-
+import React from "react";
 
 import TYPOGRAPHY from "@/constants/Typography";
 import COLORS from "@/constants/Colors";
@@ -79,6 +79,27 @@ export default function CafeCard({
   size = "medium",
   slug = "INVALID_SLUG",
 }: CafeCardProps) {
+  const pulseAnim = React.useRef(new Animated.Value(1)).current;
+
+  React.useEffect(() => {
+    if (status === "open" || status === "closing soon") {
+      Animated.loop(
+        Animated.sequence([
+          Animated.timing(pulseAnim, {
+            toValue: 1.5,
+            duration: 1200,
+            useNativeDriver: true,
+          }),
+          Animated.timing(pulseAnim, {
+            toValue: 1,
+            duration: 1200,
+            useNativeDriver: true,
+          }),
+        ])
+      ).start();
+    }
+  }, [status]);
+
   return (
     <Pressable
       onPress={() => router.push(`/cafe/${slug}`)}
@@ -108,26 +129,42 @@ export default function CafeCard({
         <View style={styles.cafeInfo}>
           <View style={styles.cafeInfoHeader}>
             <Text style={[TYPOGRAPHY.body.large.semiBold]}>{name}</Text>
-            <Circle
-              width={12}
-              height={12}
-              strokeWidth={1}
-              color={
-                status === "open"
-                  ? COLORS.status.green
-                  : status === "closing soon"
-                  ? COLORS.status.orange
-                  : COLORS.status.red
-              }
-              fill={
-                status === "open"
-                  ? COLORS.status.green
-                  : status === "closing soon"
-                  ? COLORS.status.orange
-                  : COLORS.status.red
-              }
-              testID="tooltip-icon"
-            />
+            <View style={{ position: 'relative' }}>
+              {(status === "open" || status === "closing soon") && (
+                <Animated.View
+                  style={[
+                    styles.pulsingDot,
+                    {
+                      transform: [{ scale: pulseAnim }],
+                      backgroundColor:
+                        status === "open"
+                          ? COLORS.status.green
+                          : COLORS.status.orange,
+                    },
+                  ]}
+                />
+              )}
+              <Circle
+                width={9}
+                height={9}
+                strokeWidth={1}
+                color={
+                  status === "open"
+                    ? COLORS.status.green
+                    : status === "closing soon"
+                    ? COLORS.status.orange
+                    : COLORS.status.red
+                }
+                fill={
+                  status === "open"
+                    ? COLORS.status.green
+                    : status === "closing soon"
+                    ? COLORS.status.orange
+                    : COLORS.status.red
+                }
+                testID="tooltip-icon"
+              />
+            </View>
           </View>
           <Text
             style={[TYPOGRAPHY.body.normal.semiBold, styles.cafeInfoLocation]}
@@ -172,9 +209,16 @@ const styles = StyleSheet.create({
     borderRadius: 500,
   },
   rating: {
-    backgroundColor: COLORS.white, // FIXME: Remove this line later
+    backgroundColor: "rgba(242, 242, 247, .95)",
     position: "absolute",
     right: SPACING.sm,
     top: SPACING.sm,
+  },
+  pulsingDot: {
+    width: 9,
+    height: 9,
+    borderRadius: 8,
+    position: 'absolute',
+    opacity: 0.5,
   },
 });

@@ -5,6 +5,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   Pressable,
+  Animated,
 } from "react-native";
 import { ChevronDown, Circle, LucideIcon } from "lucide-react-native";
 
@@ -40,6 +41,9 @@ type TooltipProps = {
 
   /** Optional children to display inside the tooltip */
   children?: React.ReactNode;
+
+  /** Whether to animate the circle icon when status is green or orange (default: false) */
+  animateCircle?: boolean;
 
   /** Callback function triggered when the tooltip is pressed */
   onPress?: () => void;
@@ -101,9 +105,30 @@ export default function Tooltip({
   color,
   textColor,
   changeColorOnPress = false,
+  animateCircle = true,
   onPress,
 }: TooltipProps): JSX.Element {
   const [isPressed, setIsPressed] = React.useState(false);
+  const pulseAnim = React.useRef(new Animated.Value(1)).current;
+
+  React.useEffect(() => {
+    if (animateCircle && (status === "green" || status === "orange")) {
+      Animated.loop(
+        Animated.sequence([
+          Animated.timing(pulseAnim, {
+            toValue: 1.5,
+            duration: 1200,
+            useNativeDriver: true,
+          }),
+          Animated.timing(pulseAnim, {
+            toValue: 1,
+            duration: 1200,
+            useNativeDriver: true,
+          }),
+        ])
+      ).start();
+    }
+  }, [status, animateCircle]);
 
   const modalContext = useModal();
   const openModal = modalContext ? modalContext.openModal : () => {};
@@ -157,48 +182,64 @@ export default function Tooltip({
       {/* Icon if provided */}
       {Icon && (
         <View style={styles.iconContainer}>
-          {status === "green" ? (
-            <Icon
-              width={12}
-              height={12}
-              strokeWidth={3}
-              color={COLORS.status.green}
-              fill={COLORS.status.green}
-              testID="tooltip-icon"
-            />
-          ) : status === "orange" ? (
-            <Icon
-              width={12}
-              height={12}
-              strokeWidth={3}
-              color={COLORS.status.orange}
-              fill={COLORS.status.orange}
-              testID="tooltip-icon"
-            />
-          ) : status === "red" ? (
-            <Icon
-              width={12}
-              height={12}
-              strokeWidth={3}
-              color={COLORS.status.red}
-              fill={COLORS.status.red}
-              testID="tooltip-icon"
-            />
-          ) : (
-            <Icon
-              width={14}
-              height={14}
-              strokeWidth={3}
-              color={
-                changeColorOnPress
-                  ? isPressed
-                    ? COLORS.white
+          <View style={{ position: 'relative' }}>
+            {animateCircle && (status === "green" || status === "orange") && (
+              <Animated.View
+                style={[
+                  styles.pulsingDot,
+                  {
+                    transform: [{ scale: pulseAnim }],
+                    backgroundColor:
+                      status === "green"
+                        ? COLORS.status.green
+                        : COLORS.status.orange,
+                  },
+                ]}
+              />
+            )}
+            {status === "green" ? (
+              <Icon
+                width={9}
+                height={9}
+                strokeWidth={3}
+                color={COLORS.status.green}
+                fill={COLORS.status.green}
+                testID="tooltip-icon"
+              />
+            ) : status === "orange" ? (
+              <Icon
+                width={9}
+                height={9}
+                strokeWidth={3}
+                color={COLORS.status.orange}
+                fill={COLORS.status.orange}
+                testID="tooltip-icon"
+              />
+            ) : status === "red" ? (
+              <Icon
+                width={12}
+                height={12}
+                strokeWidth={3}
+                color={COLORS.status.red}
+                fill={COLORS.status.red}
+                testID="tooltip-icon"
+              />
+            ) : (
+              <Icon
+                width={14}
+                height={14}
+                strokeWidth={3}
+                color={
+                  changeColorOnPress
+                    ? isPressed
+                      ? COLORS.white
+                      : COLORS.black
                     : COLORS.black
-                  : COLORS.black
-              }
-              testID="tooltip-icon"
-            />
-          )}
+                }
+                testID="tooltip-icon"
+              />
+            )}
+          </View>
         </View>
       )}
 
@@ -268,5 +309,12 @@ const styles = StyleSheet.create({
   },
   iconContainer: {
     marginRight: SPACING.xxs, // Space between icon and label
+  },
+  pulsingDot: {
+    width: 9,
+    height: 9,
+    borderRadius: 100,
+    position: 'absolute',
+    opacity: 0.5,
   },
 });

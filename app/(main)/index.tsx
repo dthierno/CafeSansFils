@@ -3,6 +3,7 @@ import { Redirect, router } from "expo-router";
 import * as Location from "expo-location";
 import { Star, Vegan } from "lucide-react-native";
 import { View, StyleSheet, Image, Text } from "react-native";
+import { useCafe } from "@/contexts/CafeContext";
 
 
 import useLocation from "@/hooks/useLocation";
@@ -51,7 +52,18 @@ import { useUser } from "@clerk/clerk-expo";
  * - Horizontal Cafe Cards By Categories: Shows cafe cards categorized by trends, proximity, and promotions.
  * - All Cafes Cards: Lists all available cafes.
  */
+type Cafe = {
+  name: string;
+  location: string | { pavillon: string; local: string };
+  priceRange: "$" | "$$" | "$$$";
+  rating: number;
+  status: "open" | "closing soon" | "closed";
+  slug: string;
+  image_url?: string;
+};
+
 export default function HomeScreen() {
+  const { cafes, loading, error } = useCafe();
   // Get the user's current location
   const [location, getCurrentLocation] = useLocation();
 
@@ -91,6 +103,8 @@ export default function HomeScreen() {
       ></FilterModalLayout>
     );
   }
+
+
 
   return (
     <ScrollableLayout>
@@ -146,42 +160,18 @@ export default function HomeScreen() {
             scrollGap={SPACING["md"]}
             dividerBottom
           >
-            <CafeCard
-              name="Jean Brillant"
-              location="Pavillon Claire McNicole"
-              priceRange="$$"
-              rating={4.8}
-              status="open"
-              slug="Cafe Tore et Fraction"
-            />
-            <CafeCard
-              name="Jean Brillant"
-              location="Pavillon Claire McNicole"
-              priceRange="$$"
-              rating={4.8}
-              status="closing soon"
-            />
-            <CafeCard
-              name="Jean Brillant"
-              location="Pavillon Claire McNicole"
-              priceRange="$$"
-              rating={4.8}
-              status="open"
-            />
-            <CafeCard
-              name="Jean Brillant"
-              location="Pavillon Claire McNicole"
-              priceRange="$$"
-              rating={4.8}
-              status="closed"
-            />
-            <CafeCard
-              name="Jean Brillant"
-              location="Pavillon Claire McNicole"
-              priceRange="$$"
-              rating={4.8}
-              status="open"
-            />
+            {cafes.map((cafe) => (
+              <CafeCard
+                key={cafe.slug}
+                status={cafe.status || "open"}
+                name={cafe.name}
+                location={typeof cafe.location === 'object' ? `${cafe.location.pavillon} ${cafe.location.local}` : cafe.location}
+                priceRange={"$$"}
+                rating={4.8}
+                slug={cafe.slug}
+                image={cafe.image_url}
+              />
+            ))}
           </CardScrollableLayout>
           <CardScrollableLayout
             title="Proches de vous"
@@ -191,41 +181,18 @@ export default function HomeScreen() {
             scrollGap={SPACING["md"]}
             dividerBottom
           >
-            <CafeCard
-              name="Jean Brillant"
-              location="Pavillon Claire McNicole"
-              priceRange="$$"
-              rating={4.8}
-              status="open"
-            />
-            <CafeCard
-              name="Jean Brillant"
-              location="Pavillon Claire McNicole"
-              priceRange="$$"
-              rating={4.8}
-              status="closing soon"
-            />
-            <CafeCard
-              name="Jean Brillant"
-              location="Pavillon Claire McNicole"
-              priceRange="$$"
-              rating={4.8}
-              status="open"
-            />
-            <CafeCard
-              name="Jean Brillant"
-              location="Pavillon Claire McNicole"
-              priceRange="$$"
-              rating={4.8}
-              status="closed"
-            />
-            <CafeCard
-              name="Jean Brillant"
-              location="Pavillon Claire McNicole"
-              priceRange="$$"
-              rating={4.8}
-              status="open"
-            />
+            {cafes.map((cafe) => (
+              <CafeCard
+                key={cafe.slug}
+                status={cafe.status || "open"}
+                name={cafe.name}
+                location={typeof cafe.location === 'object' ? `${cafe.location.pavillon} ${cafe.location.local}` : cafe.location}
+                priceRange={"$$"}
+                rating={4.8}
+                slug={cafe.slug}
+                image={cafe.image_url}
+              />
+            ))}
           </CardScrollableLayout>
           <CardScrollableLayout
             title={`${sortedPavillons[0]}`}
@@ -235,41 +202,18 @@ export default function HomeScreen() {
             scrollGap={SPACING["md"]}
             dividerBottom
           >
-            <CafeCard
-              name="Jean Brillant"
-              location="Pavillon Claire McNicole"
-              priceRange="$$"
-              rating={4.8}
-              status="open"
-            />
-            <CafeCard
-              name="Jean Brillant"
-              location="Pavillon Claire McNicole"
-              priceRange="$$"
-              rating={4.8}
-              status="closing soon"
-            />
-            <CafeCard
-              name="Jean Brillant"
-              location="Pavillon Claire McNicole"
-              priceRange="$$"
-              rating={4.8}
-              status="open"
-            />
-            <CafeCard
-              name="Jean Brillant"
-              location="Pavillon Claire McNicole"
-              priceRange="$$"
-              rating={4.8}
-              status="closed"
-            />
-            <CafeCard
-              name="Jean Brillant"
-              location="Pavillon Claire McNicole"
-              priceRange="$$"
-              rating={4.8}
-              status="open"
-            />
+            {cafes.map((cafe) => (
+              <CafeCard
+                key={cafe.slug}
+                status={cafe.status || "open"}
+                name={cafe.name}
+                location={typeof cafe.location === 'object' ? `${cafe.location.pavillon} ${cafe.location.local}` : cafe.location}
+                priceRange={"$$"}
+                rating={4.8}
+                slug={cafe.slug}
+                image={cafe.image_url}
+              />
+            ))}
           </CardScrollableLayout>
           <CardScrollableLayout
             title="Promotions en cours"
@@ -279,41 +223,18 @@ export default function HomeScreen() {
             scrollGap={SPACING["md"]}
             dividerBottom
           >
-            <CafeCard
-              name="Jean Brillant"
-              location="Pavillon Claire McNicole"
-              priceRange="$$"
-              rating={4.8}
-              status="open"
-            />
-            <CafeCard
-              name="Jean Brillant"
-              location="Pavillon Claire McNicole"
-              priceRange="$$"
-              rating={4.8}
-              status="closing soon"
-            />
-            <CafeCard
-              name="Jean Brillant"
-              location="Pavillon Claire McNicole"
-              priceRange="$$"
-              rating={4.8}
-              status="open"
-            />
-            <CafeCard
-              name="Jean Brillant"
-              location="Pavillon Claire McNicole"
-              priceRange="$$"
-              rating={4.8}
-              status="closed"
-            />
-            <CafeCard
-              name="Jean Brillant"
-              location="Pavillon Claire McNicole"
-              priceRange="$$"
-              rating={4.8}
-              status="open"
-            />
+            {cafes.map((cafe) => (
+              <CafeCard
+                key={cafe.slug}
+                status={cafe.status || "open"}
+                name={cafe.name}
+                location={typeof cafe.location === 'object' ? `${cafe.location.pavillon} ${cafe.location.local}` : cafe.location}
+                priceRange={"$$"}
+                rating={4.8}
+                slug={cafe.slug}
+                image={cafe.image_url}
+              />
+            ))}
           </CardScrollableLayout>
         </View>
 
@@ -326,51 +247,19 @@ export default function HomeScreen() {
           scrollGap={SPACING["2xl"]}
           scroll={false}
         >
-          <CafeCard
-            status={"open"}
-            name={"Jean Brillant"}
-            location={"Pavillon Claire McNicole"}
-            priceRange={"$$"}
-            rating={4.5}
-            size={"large"}
-            slug="1"
-          />
-          <CafeCard
-            status={"open"}
-            name={"Jean Brillant"}
-            location={"Pavillon Claire McNicole"}
-            priceRange={"$$"}
-            rating={4.5}
-            size={"large"}
-            slug="2"
-          />
-          <CafeCard
-            status={"open"}
-            name={"Jean Brillant"}
-            location={"Pavillon Claire McNicole"}
-            priceRange={"$$"}
-            rating={4.5}
-            size={"large"}
-            slug="3"
-          />
-          <CafeCard
-            status={"open"}
-            name={"Jean Brillant"}
-            location={"Pavillon Claire McNicole"}
-            priceRange={"$$"}
-            rating={4.5}
-            size={"large"}
-            slug="4"
-          />
-          <CafeCard
-            status={"open"}
-            name={"Jean Brillant"}
-            location={"Pavillon Claire McNicole"}
-            priceRange={"$$"}
-            rating={4.5}
-            size={"large"}
-            slug="5"
-          />
+          {cafes.map((cafe) => (
+            <CafeCard
+              key={cafe.slug}
+              status={cafe.status || "open"}
+              name={cafe.name}
+              location={typeof cafe.location === 'object' ? `${cafe.location.pavillon} ${cafe.location.local}` : cafe.location}
+              priceRange={"$$"}
+              rating={4.8}
+              size={"large"}
+              slug={cafe.slug}
+              image={cafe.image_url}
+            />
+          ))}
         </CardScrollableLayout>
       </>
     </ScrollableLayout>

@@ -28,7 +28,7 @@ export default function SearchBar({
       />
 
       <TextInput
-        style={[TYPOGRAPHY.component.homeSearchText, styles.searchInput]}
+        style={[TYPOGRAPHY.body.large.medium, styles.searchInput]}
         placeholder={placeholder}
         placeholderTextColor={COLORS.subtuleDark}
         onChangeText={onSearch}
@@ -65,6 +65,7 @@ const styles = StyleSheet.create({
     flex: 1,
     color: COLORS.black,
     marginLeft: SPACING.md,
+    fontSize: 13.5,
   },
   filterButton: {
     marginLeft: SPACING.sm,

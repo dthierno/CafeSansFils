@@ -2,13 +2,14 @@ import React from 'react';
 import {useEffect} from 'react';
 
 import { useFonts } from 'expo-font'; 
-import { Slot } from 'expo-router';
+import { Redirect, Slot } from 'expo-router';
 import { Stack } from "expo-router/stack";
 
 import * as SplashScreen from 'expo-splash-screen'; 
 import COLORS from '@/constants/Colors';
 import { GlobalModalProvider } from '@/components/layouts/GlobalModal';
 import { ClerkProvider, ClerkLoaded } from '@clerk/clerk-expo';
+import { CafeProvider } from '@/contexts/CafeContext';
 
 import { type TokenCache } from '@/lib/token-cache';
 import * as SecureStore from 'expo-secure-store'
@@ -101,17 +102,19 @@ export default function RootLayout() {
     return (
         <ClerkProvider publishableKey={publishableKey}>
             <ClerkLoaded>
-                <GlobalModalProvider>
-                    <Stack screenOptions={{ 
-                        gestureEnabled: false,
-                        animation: "none",
-                        contentStyle: { backgroundColor: COLORS.white },
-                    }}>
-                        <Stack.Screen name='(main)' options={{ headerShown: false }} />
-                        <Stack.Screen name='(onboarding)' options={{ headerShown: false}} />
-                        <Stack.Screen name='(auth)' options={{ headerShown: false}} />
-                    </Stack>
-                </GlobalModalProvider>
+                <CafeProvider>
+                  <GlobalModalProvider>
+                      <Stack screenOptions={{ 
+                          gestureEnabled: false,
+                          animation: "none",
+                          contentStyle: { backgroundColor: COLORS.white },
+                      }}>
+                          <Stack.Screen name='(main)' options={{ headerShown: false }} />
+                          <Stack.Screen name='(onboarding)' options={{ headerShown: false}} />
+                          <Stack.Screen name='(auth)' options={{ headerShown: false}} />
+                      </Stack>
+                  </GlobalModalProvider>
+                </CafeProvider>
             </ClerkLoaded>
         </ClerkProvider>
     )

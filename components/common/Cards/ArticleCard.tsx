@@ -33,6 +33,8 @@ type ArticleCardProps = {
 
   /** The slug of the cafe */
   cafeSlug?: string;
+
+  description?: string;
 };
 
 let cardDimensions = {
@@ -78,6 +80,7 @@ export default function ArticleCard({
   calories,
   price,
   image,
+  description,
   size = "medium",
   cafeSlug = "INVALID_SLUG",
   slug = "INVALID_SLUG",
@@ -95,11 +98,10 @@ export default function ArticleCard({
           <View style={{ gap: 10, width: "50%" }}>
             <View style={{ gap: 8 }}>
               <Text style={TYPOGRAPHY.body.large.semiBold}>
-                Croissant au chocolat
+                {name? name : "Croissant au chocolat"}
               </Text>
               <Text style={{ fontSize: 12 }}>
-                Un ssssscroissant au chocolat d'exception, savourez sssleset
-                laissez-vous ssstransporter en France. Bonne dégustationsss!
+                {description? description : "Un ssssscroissant au chocolat d'exception, savourez sssleset laissez-vous ssstransporter en France. Bonne dégustationsss!"}
               </Text>
             </View>
             <View
@@ -111,7 +113,7 @@ export default function ArticleCard({
           </View>
           <View>
             <Image
-              source={require("@/assets/images/placeholder/imagexs.png")}
+              source={image ? { uri: image } : cardDimensions[size].image}
               width={160}
               height={108}
               style={{ borderRadius: SPACING["sm"] }}
